@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -13,8 +14,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class YML extends YamlConfiguration {
 	private static File file = null;
 	public YML(InputStream fileStream) throws IOException, InvalidConfigurationException {
-		//load yml from resources. 
-		load(fileStream);
+		//load yml from resources.
+		//RoboMWM start - 1.12 deprecated InputStream, converting to InputStreamReader
+		InputStreamReader fileStreamReader = new InputStreamReader(fileStream);
+		load(fileStreamReader);
+		//RoboMWM end
 	}
 	
 	public YML(File pluginDir, String fileName) throws FileNotFoundException, IOException, InvalidConfigurationException {
