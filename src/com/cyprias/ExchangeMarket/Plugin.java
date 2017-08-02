@@ -26,8 +26,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.Metrics;
-import org.xml.sax.SAXException;
 
 import com.cyprias.ExchangeMarket.Breeze.InventoryUtil;
 import com.cyprias.ExchangeMarket.Breeze.MaterialUtil;
@@ -185,12 +183,6 @@ public class Plugin extends JavaPlugin {
 		}
 
 		registerListeners(new PlayerListener(), new SignListener());
-
-		try {
-			Metrics metrics = new Metrics(this);
-			metrics.start();
-		} catch (IOException e) {
-		}
 
 		/*
 		 * if (!Econ.setupEconomy()) {

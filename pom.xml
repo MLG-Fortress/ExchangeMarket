@@ -48,7 +48,7 @@
     <dependencies>
         <!--Bukkit API-->
         <dependency>
-                <groupId>com.destroystokyo</groupId>
+                <groupId>com.destroystokyo.paper</groupId>
                 <artifactId>paper-api</artifactId>
                 <version>1.12-R0.1-SNAPSHOT</version>
                 <scope>provided</scope>
@@ -58,6 +58,7 @@
                 <groupId>net.milkbowl.vault</groupId>
                 <artifactId>VaultAPI</artifactId>
                 <version>1.6</version>
+        </dependency>
     </dependencies>
 
 </project>
