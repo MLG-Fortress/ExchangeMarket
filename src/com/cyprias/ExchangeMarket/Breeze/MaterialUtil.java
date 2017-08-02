@@ -4,7 +4,7 @@ Classes copied from Acrobot's Breeze code.
 https://github.com/Acrobot/ChestShop-3/blob/master/com/Acrobot/Breeze/
 */
 
-import info.somethingodd.bukkit.OddItem.OddItem;
+//import info.somethingodd.bukkit.OddItem.OddItem;
 import org.bukkit.CoalType;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -136,11 +136,12 @@ public class MaterialUtil {
 * @return ItemStack
 */
     public static ItemStack getItem(String itemName) {
-        ItemStack itemStack = Odd.getFromString(itemName);
-
-        if (itemStack != null) {
-            return itemStack;
-        }
+        ItemStack itemStack;
+//        ItemStack itemStack = Odd.getFromString(itemName);
+//
+//        if (itemStack != null) {
+//            return itemStack;
+//        }
 
         String[] split = Iterables.toArray(Splitter.onPattern(":|-|#").trimResults().split(itemName), String.class);
 
@@ -344,10 +345,10 @@ public class MaterialUtil {
                 }
 
                 if (material == Material.INK_SACK) {
-                    color = DyeColor.getByData((byte) (15 - color.getData()));
+                    color = DyeColor.getByDyeData((byte) (15 - color.getDyeData()));
                 }
 
-                return color.getData();
+                return color.getDyeData();
             } else if (materialData instanceof Tree) {
                 try {
                     return TreeSpecies.valueOf(type).getData();
@@ -409,34 +410,34 @@ public class MaterialUtil {
     }
 
 
-    public static class Odd {
-        private static boolean isInitialized = false;
-
-        /**
-* Returns the item stack from OddItem plugin
-*
-* @param itemName Item name to parse
-* @return itemStack that was parsed
-*/
-        public static ItemStack getFromString(String itemName) {
-            if (!isInitialized) {
-                return null;
-            }
-
-            String name = itemName.replace(':', ';');
-
-            try {
-                return OddItem.getItemStack(name);
-            } catch (Exception ex) {
-                return null;
-            }
-        }
-
-        /**
-* Lets the class know that it's safe to use the OddItem methods now
-*/
-        public static void initialize() {
-            isInitialized = true;
-        }
-    }
+//    public static class Odd {
+//        private static boolean isInitialized = false;
+//
+//        /**
+//* Returns the item stack from OddItem plugin
+//*
+//* @param itemName Item name to parse
+//* @return itemStack that was parsed
+//*/
+//        public static ItemStack getFromString(String itemName) {
+//            if (!isInitialized) {
+//                return null;
+//            }
+//
+//            String name = itemName.replace(':', ';');
+//
+//            try {
+//                return OddItem.getItemStack(name);
+//            } catch (Exception ex) {
+//                return null;
+//            }
+//        }
+//
+//        /**
+//* Lets the class know that it's safe to use the OddItem methods now
+//*/
+//        public static void initialize() {
+//            isInitialized = true;
+//        }
+//    }
 }
