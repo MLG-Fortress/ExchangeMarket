@@ -69,16 +69,16 @@ public class CollectCommand  implements Command {
 			
 			stock.setAmount(canTake);
 
-            Bukkit.broadcastMessage("EM: cantake: " + canTake + "parcel#getAmount: " + parcel.getAmount() + " stock#getAmount: " + stock.getAmount());
+            //Bukkit.broadcastMessage("EM: cantake: " + canTake + "parcel#getAmount: " + parcel.getAmount() + " stock#getAmount: " + stock.getAmount());
 
 
             if (parcel.setAmount(parcel.getAmount() - canTake)){
-                Bukkit.broadcastMessage("EM: parcel#getAmount: " + parcel.getAmount());
+                //Bukkit.broadcastMessage("EM: parcel#getAmount: " + parcel.getAmount());
 				leftover = InventoryUtil.add(stock, player.getInventory());
 				if (leftover > 0)
 					parcel.setAmount(parcel.getAmount() + leftover);
 
-                Bukkit.broadcastMessage("EM: leftover: " + leftover);
+                //Bukkit.broadcastMessage("EM: leftover: " + leftover);
 				
 				Logger.debug("canTake: " + canTake + ", leftover: " + leftover);
 				
@@ -87,6 +87,8 @@ public class CollectCommand  implements Command {
 				
 				ChatUtils.send(sender, String.format("\u00a77Received \u00a7f%s\u00a77x\u00a7f%s\u00a77, you have \u00a7f%x \u00a77remaining in your inbox.",
 					Plugin.getItemName(stock), (canTake - leftover), parcel.getAmount()));
+
+                Bukkit.broadcastMessage("EM: parcel#getAmount: " + parcel.getAmount());
 				
 				noFound = false;
 			}
