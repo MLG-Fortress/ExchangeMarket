@@ -110,7 +110,7 @@ public class BuyOrderCommand implements Command {
 			}
 
 		} else if (price < Config.getDouble("properties.min-order-price")) {
-			ChatUtils.error(sender, "§7Your price is too low.");
+			ChatUtils.error(sender, "\u00a77Your price is too low.");
 			return true;
 		}
 		// Logger.debug( "price1: " + price);
@@ -119,7 +119,7 @@ public class BuyOrderCommand implements Command {
 		// Logger.debug( "accountBalance: " + accountBalance);
 		if (accountBalance <= (price * amount)) {
 
-			ChatUtils.send(sender, "§7Your account ($§f" + accountBalance + "§7) does not have enough funds to supply this buy order.");
+			ChatUtils.send(sender, "\u00a77Your account ($\u00a7f" + accountBalance + "\u00a77) does not have enough funds to supply this buy order.");
 			return true;
 		}
 
@@ -190,7 +190,7 @@ public class BuyOrderCommand implements Command {
 					
 					ChatUtils.send(
 							sender,
-							String.format("§7Bought §f%s§7x§f%s §7for $§f%s §7($§f%s§7e).", Plugin.getItemName(stock), traded, Plugin.Round(spend, pl),
+							String.format("\u00a77Bought \u00a7f%s\u00a77x\u00a7f%s \u00a77for $\u00a7f%s \u00a77($\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Plugin.Round(spend, pl),
 								Plugin.Round(o.getPrice(), pl)));
 					
 					amount -= traded;
@@ -214,13 +214,13 @@ public class BuyOrderCommand implements Command {
 			// int mAmount = matchingOrder.getAmount();
 			if (matchingOrder.increaseAmount(amount)) {
 
-				ChatUtils.send(sender, String.format("§7Increased your existing buy order #§f%s §7of §f%s §7to §f%s§7.", matchingOrder.getId(),
+				ChatUtils.send(sender, String.format("\u00a77Increased your existing buy order #\u00a7f%s \u00a77of \u00a7f%s \u00a77to \u00a7f%s\u00a77.", matchingOrder.getId(),
 					Plugin.getItemName(stock), matchingOrder.getAmount())); // amount
 
 				EconomyResponse r = Econ.withdrawPlayer(sender.getName(), price * amount);
 
 				if (r.transactionSuccess()) {
-					ChatUtils.send(sender, String.format("$§f%s §7has been withdrawnfrom your account, you now have $§f%s§7.", Plugin.Round(r.amount, pl), Plugin.Round(r.balance, pl)));
+					ChatUtils.send(sender, String.format("$\u00a7f%s \u00a77has been withdrawnfrom your account, you now have $\u00a7f%s\u00a77.", Plugin.Round(r.amount, pl), Plugin.Round(r.balance, pl)));
 				} else {
 					ChatUtils.send(sender, String.format("An error occured: %s", r.errorMessage));
 				}
@@ -230,7 +230,7 @@ public class BuyOrderCommand implements Command {
 			if (Config.getInt("properties.identical-orders-per-player") > 0){
 				int existingOrders = Plugin.database.getPlayerItemOrderCount(sender, stock);
 				if (existingOrders >= Config.getInt("properties.identical-orders-per-player")){
-					ChatUtils.send(sender, String.format("§7You have too many orders for §f%s§7, remove one and try again.", Plugin.getItemName(stock)));
+					ChatUtils.send(sender, String.format("\u00a77You have too many orders for \u00a7f%s\u00a77, remove one and try again.", Plugin.getItemName(stock)));
 					return true;
 				}
 			}
@@ -240,13 +240,13 @@ public class BuyOrderCommand implements Command {
 				int id = Plugin.database.getLastId();
 
 				
-				ChatUtils.send(sender, String.format("§7Created buy order #§f%s §7for §f%s§7x§f%s §7@ §f%s §7(§f%s§7e)", id, Plugin.getItemName(stock),
+				ChatUtils.send(sender, String.format("\u00a77Created buy order #\u00a7f%s \u00a77for \u00a7f%s\u00a77x\u00a7f%s \u00a77@ \u00a7f%s \u00a77(\u00a7f%s\u00a77e)", id, Plugin.getItemName(stock),
 					preOrder.getAmount(), Plugin.Round(preOrder.getPrice() * preOrder.getAmount(), pl), Plugin.Round(preOrder.getPrice(), pl)));
 
 				EconomyResponse r = Econ.withdrawPlayer(sender.getName(), price * amount);
 
 				if (r.transactionSuccess()) {
-					ChatUtils.send(sender, String.format("$§f%s §7has been withdrawnfrom your account, you now have $§f%s§7.", Plugin.Round(r.amount, pl), Plugin.Round(r.balance, pl)));
+					ChatUtils.send(sender, String.format("$\u00a7f%s \u00a77has been withdrawnfrom your account, you now have $\u00a7f%s\u00a77.", Plugin.Round(r.amount, pl), Plugin.Round(r.balance, pl)));
 				} else {
 					ChatUtils.send(sender, String.format("An error occured: %s", r.errorMessage));
 				}

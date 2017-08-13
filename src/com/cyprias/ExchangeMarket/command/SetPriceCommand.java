@@ -57,18 +57,18 @@ public class SetPriceCommand implements Command {
 
 		Order order = Plugin.database.getOrder(id);
 		if (order == null) {
-			ChatUtils.send(sender, "§7That order does not exist.");
+			ChatUtils.send(sender, "\u00a77That order does not exist.");
 			return true;
 		}
 
 		if ((sender instanceof Player) && !sender.getName().equalsIgnoreCase(order.getPlayer())) {
-			ChatUtils.send(sender, "§7That order does not belong to you.");
+			ChatUtils.send(sender, "\u00a77That order does not belong to you.");
 			return true;
 		}
 
 		if (order.getOrderType() == Order.BUY_ORDER){
 			// Todo: add support to withdraw funds from player to supply the buy order later.
-			ChatUtils.send(sender, "§7Cannot set price on buy orders, cancel the order and create it again.");
+			ChatUtils.send(sender, "\u00a77Cannot set price on buy orders, cancel the order and create it again.");
 			return true;
 		}
 		
@@ -99,7 +99,7 @@ public class SetPriceCommand implements Command {
 		Logger.debug("getItemName price: " + price);
 		
 		if (price < Config.getDouble("properties.min-order-price")) {
-			ChatUtils.error(sender, "§7Your price is too low.");
+			ChatUtils.error(sender, "\u00a77Your price is too low.");
 			return true;
 		}
 		
@@ -107,7 +107,7 @@ public class SetPriceCommand implements Command {
 		
 		
 		int pl = Config.getInt("properties.price-decmial-places");
-		ChatUtils.send(sender, String.format("§7Set order #§f%s §7(§f%s§7x§f%s§7) to $§f%s §7($§f%s§7e)", id, order.getColourName(sender), order.getAmount(), Plugin.Round(order.getPrice()*order.getAmount(), pl), Plugin.Round(order.getPrice(), pl)));
+		ChatUtils.send(sender, String.format("\u00a77Set order #\u00a7f%s \u00a77(\u00a7f%s\u00a77x\u00a7f%s\u00a77) to $\u00a7f%s \u00a77($\u00a7f%s\u00a77e)", id, order.getColourName(sender), order.getAmount(), Plugin.Round(order.getPrice()*order.getAmount(), pl), Plugin.Round(order.getPrice(), pl)));
 		
 		
 

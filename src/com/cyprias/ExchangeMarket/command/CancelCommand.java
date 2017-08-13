@@ -79,12 +79,12 @@ public class CancelCommand implements Command {
 		
 		Order order = Plugin.database.getOrder(id);
 		if (order == null){
-			ChatUtils.send(sender, "§7That order does not exist.");
+			ChatUtils.send(sender, "\u00a77That order does not exist.");
 			return true;
 		}
 		
 		if (!sender.getName().equalsIgnoreCase(order.getPlayer())){
-			ChatUtils.send(sender, "§7That order does not belong to you.");
+			ChatUtils.send(sender, "\u00a77That order does not belong to you.");
 			return true;
 		}
 		
@@ -94,7 +94,7 @@ public class CancelCommand implements Command {
 			
 			int receive = Plugin.getFitAmount(stock, order.getAmount(), player.getInventory());
 			if (receive <= 0){
-				ChatUtils.send(sender, "§7You have no bag space available.");
+				ChatUtils.send(sender, "\u00a77You have no bag space available.");
 				return true;
 			}
 
@@ -114,13 +114,13 @@ public class CancelCommand implements Command {
 				//Logger.debug("taxAmount: " + taxAmount);
 				
 				if (Econ.getBalance(sender.getName()) < taxAmount){
-					ChatUtils.send(sender, String.format("You do not have $§f%s §7(§f%s§7%%) needed to cancel that order.", Plugin.Round(taxAmount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellCancellation") * 100)));
+					ChatUtils.send(sender, String.format("You do not have $\u00a7f%s \u00a77(\u00a7f%s\u00a77%%) needed to cancel that order.", Plugin.Round(taxAmount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellCancellation") * 100)));
 					return true;
 				}
 				
 				EconomyResponse r = Econ.withdrawPlayer(sender.getName(), taxAmount);
 				if (r.transactionSuccess()) {
-					ChatUtils.send(sender, String.format("$§f%s §7(§f%s§7%%) cancellation fee has been withdrawn from your account.", Plugin.Round(r.amount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellCancellation") * 100)));
+					ChatUtils.send(sender, String.format("$\u00a7f%s \u00a77(\u00a7f%s\u00a77%%) cancellation fee has been withdrawn from your account.", Plugin.Round(r.amount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellCancellation") * 100)));
 				} else {
 					ChatUtils.send(sender, String.format("An error occured: %s", r.errorMessage));
 				}
@@ -129,7 +129,7 @@ public class CancelCommand implements Command {
 			
 			receive = order.giveAmount(player, receive);
 
-			ChatUtils.send(sender, String.format("§7Returned §f%s§7x§f%s§7, there's §f%s §7remaining in order #§f%s§7.", Plugin.getItemName(stock), receive, order.getAmount(), order.getId()));
+			ChatUtils.send(sender, String.format("\u00a77Returned \u00a7f%s\u00a77x\u00a7f%s\u00a77, there's \u00a7f%s \u00a77remaining in order #\u00a7f%s\u00a77.", Plugin.getItemName(stock), receive, order.getAmount(), order.getId()));
 			
 			
 		}else if (order.getOrderType() == Order.BUY_ORDER){
@@ -140,7 +140,7 @@ public class CancelCommand implements Command {
 			Econ.depositPlayer(sender.getName(), money);
 			order.setAmount(0);
 			
-			ChatUtils.send(sender, String.format("§7Returned your $§f%s§7.", Plugin.Round(money, Config.getInt("properties.price-decmial-places"))));
+			ChatUtils.send(sender, String.format("\u00a77Returned your $\u00a7f%s\u00a77.", Plugin.Round(money, Config.getInt("properties.price-decmial-places"))));
 			
 			
 			

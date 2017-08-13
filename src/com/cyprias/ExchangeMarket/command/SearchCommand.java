@@ -46,7 +46,7 @@ public class SearchCommand implements Command {
 			
 			
 			
-			ChatUtils.send(sender, String.format("§7There are §f%s §7orders for §f%s§7.", orders.size(), Plugin.getItemName(stock)) );
+			ChatUtils.send(sender, String.format("\u00a77There are \u00a7f%s \u00a77orders for \u00a7f%s\u00a77.", orders.size(), Plugin.getItemName(stock)) );
 			
 			if (orders.size() < 0)
 				return true;

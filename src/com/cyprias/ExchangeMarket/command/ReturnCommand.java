@@ -57,7 +57,7 @@ public class ReturnCommand implements Command {
 		
 		stock.setAmount(1);
 		if (!InventoryUtil.fits(stock, player.getInventory())){
-			ChatUtils.send(sender, String.format("§7You cannot fit anymore %s in your inventory.", Plugin.getItemName(stock)));
+			ChatUtils.send(sender, String.format("\u00a77You cannot fit anymore %s in your inventory.", Plugin.getItemName(stock)));
 			return true;
 		}
 			
@@ -82,7 +82,7 @@ public class ReturnCommand implements Command {
 		List<Order> orders = Plugin.database.search(stock, Order.SELL_ORDER, sender);
 		
 		if (orders.size() == 0){
-			ChatUtils.send(sender, String.format("§7You now have sell orders for §f%s§7.", Plugin.getItemName(stock)) );
+			ChatUtils.send(sender, String.format("\u00a77You now have sell orders for \u00a7f%s\u00a77.", Plugin.getItemName(stock)) );
 			return true;
 		}
 		
@@ -117,7 +117,7 @@ public class ReturnCommand implements Command {
 				
 				EconomyResponse r = Econ.withdrawPlayer(sender.getName(), taxAmount);
 				if (r.transactionSuccess()) {
-					ChatUtils.send(sender, String.format("$§f%s §7(§f%s§7%%) cancellation tax has been withdrawn from your account.", Plugin.Round(r.amount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellCancellation") * 100)));
+					ChatUtils.send(sender, String.format("$\u00a7f%s \u00a77(\u00a7f%s\u00a77%%) cancellation tax has been withdrawn from your account.", Plugin.Round(r.amount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellCancellation") * 100)));
 				} else {
 					ChatUtils.send(sender, String.format("An error occured: %s", r.errorMessage));
 				}
@@ -127,7 +127,7 @@ public class ReturnCommand implements Command {
 			receive = order.giveAmount(player, receive);
 			
 			
-			ChatUtils.send(sender, String.format("§7Returned §f%s§7x§f%s§7, there's §f%s §7remaining in order #§f%s§7.", Plugin.getItemName(stock), receive, order.getAmount(), order.getId()));
+			ChatUtils.send(sender, String.format("\u00a77Returned \u00a7f%s\u00a77x\u00a7f%s\u00a77, there's \u00a7f%s \u00a77remaining in order #\u00a7f%s\u00a77.", Plugin.getItemName(stock), receive, order.getAmount(), order.getId()));
 			amount -= receive;
 			
 		}

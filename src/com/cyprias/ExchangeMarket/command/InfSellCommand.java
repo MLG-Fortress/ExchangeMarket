@@ -104,7 +104,7 @@ public class InfSellCommand implements Command {
 			int id = Plugin.database.getLastId();
 			
 			int pl = Config.getInt("properties.price-decmial-places");
-			ChatUtils.send(sender,String.format("§7Created infinite sell order #§f%s §7for §f%s§7x§f%s §7@ §f%s §7(§f%s§7e)", id, Plugin.getItemName(stock), preOrder.getAmount(), Plugin.Round(preOrder.getPrice()*preOrder.getAmount(),pl), Plugin.Round(preOrder.getPrice(),pl)));
+			ChatUtils.send(sender,String.format("\u00a77Created infinite sell order #\u00a7f%s \u00a77for \u00a7f%s\u00a77x\u00a7f%s \u00a77@ \u00a7f%s \u00a77(\u00a7f%s\u00a77e)", id, Plugin.getItemName(stock), preOrder.getAmount(), Plugin.Round(preOrder.getPrice()*preOrder.getAmount(),pl), Plugin.Round(preOrder.getPrice(),pl)));
 		}
 		
 		

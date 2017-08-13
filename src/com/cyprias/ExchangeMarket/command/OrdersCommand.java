@@ -87,7 +87,7 @@ public class OrdersCommand implements Command {
 		}
 		
 		
-		//ChatUtils.send(sender, "§7You have §f" + orders.size() + " §7orders.");
+		//ChatUtils.send(sender, "\u00a77You have \u00a7f" + orders.size() + " \u00a77orders.");
 		
 		if (orders == null || orders.size() == 0)
 			return true;

@@ -63,12 +63,12 @@ public class PlayerListener implements Listener {
 		if (packages.size() <= 0)
 			return;
 
-		ChatUtils.notify(event.getPlayer(), String.format("§7You have §f%s §7packages to collect.", packages.size()));
+		ChatUtils.notify(event.getPlayer(), String.format("\u00a77You have \u00a7f%s \u00a77packages to collect.", packages.size()));
 
 		ItemStack stock;
 		for (Parcel parcel : packages) {
 			stock = Plugin.getItemStack(parcel.getItemId(), parcel.getItemDur(), parcel.getItemEnchant());
-			ChatUtils.sendSpam(event.getPlayer(), String.format("§f%s§7x§f%s", Plugin.getItemName(stock), parcel.getAmount()));
+			ChatUtils.sendSpam(event.getPlayer(), String.format("\u00a7f%s\u00a77x\u00a7f%s", Plugin.getItemName(stock), parcel.getAmount()));
 		}
 
 	}
@@ -123,7 +123,7 @@ public class PlayerListener implements Listener {
 
 		if (lastUsed.containsKey(playerName))
 			if ((lastUsed.get(playerName) + Config.getDouble("properties.exchange-sign-throttle")) > Plugin.getUnixTime()){
-				ChatUtils.sendSpam(player, "§7Please wait...");
+				ChatUtils.sendSpam(player, "\u00a77Please wait...");
 				return;
 			}
 		lastUsed.put(playerName, Plugin.getUnixTime());
@@ -165,7 +165,7 @@ public class PlayerListener implements Listener {
 			
 			sign.setLine(Signs.PRICE_LINE, priceText);
 			sign.update();
-			ChatUtils.send(player, String.format("§7Updated sign price, try again."));
+			ChatUtils.send(player, String.format("\u00a77Updated sign price, try again."));
 			return;
 		}
 
@@ -173,14 +173,14 @@ public class PlayerListener implements Listener {
 		if (action == RIGHT_CLICK_BLOCK) {
 			event.setCancelled(true);
 			if (Econ.getBalance(player.getName()) <= 0) {
-				ChatUtils.send(player, String.format("§7You have no money in your account."));
+				ChatUtils.send(player, String.format("\u00a77You have no money in your account."));
 				return;
 			}
 
 
 
 			if (buyPrice <= 0 && estBuyPrice == 0) {
-				ChatUtils.send(player, "§7That exchange is not selling items.");
+				ChatUtils.send(player, "\u00a77That exchange is not selling items.");
 				return;
 			}
 
@@ -196,7 +196,7 @@ public class PlayerListener implements Listener {
 				}
 
 			if (orders.size() <= 0) {
-				ChatUtils.send(player, String.format("§7There are no sell orders for §f%s§7.", Plugin.getItemName(stock)));
+				ChatUtils.send(player, String.format("\u00a77There are no sell orders for \u00a7f%s\u00a77.", Plugin.getItemName(stock)));
 				return;
 			}
 
@@ -255,7 +255,7 @@ public class PlayerListener implements Listener {
 			}
 
 			if (moneySpent > 0) {
-				ChatUtils.send(player, String.format("§a[Estimate] §f%s§7x§f%s§7 will cost $§f%s§7, type §d/em confirm §7to confirm transaction.",
+				ChatUtils.send(player, String.format("\u00a7a[Estimate] \u00a7f%s\u00a77x\u00a7f%s\u00a77 will cost $\u00a7f%s\u00a77, type \u00a7d/em confirm \u00a77to confirm transaction.",
 					Plugin.getItemName(stock), itemsTraded, Plugin.Round(moneySpent, dplaces)));
 			} else {
 				stock.setAmount(1);
@@ -264,7 +264,7 @@ public class PlayerListener implements Listener {
 				} else {
 					ChatUtils.send(
 						player,
-						String.format("§7There are no sell orders for §f%s§7x§f%s §7at $§f%s§7.", Plugin.getItemName(stock), amount,
+						String.format("\u00a77There are no sell orders for \u00a7f%s\u00a77x\u00a7f%s \u00a77at $\u00a7f%s\u00a77.", Plugin.getItemName(stock), amount,
 							Plugin.Round(buyPrice, dplaces)));
 					return;
 				}
@@ -279,7 +279,7 @@ public class PlayerListener implements Listener {
 
 
 			if (sellPrice <= 0 && estSellPrice == 0) {
-				ChatUtils.send(player, "§7That exchange is not buying items.");
+				ChatUtils.send(player, "\u00a77That exchange is not buying items.");
 				return;
 			}
 
@@ -294,7 +294,7 @@ public class PlayerListener implements Listener {
 				}
 
 			if (orders.size() <= 0) {
-				ChatUtils.send(player, String.format("§7There are no buy orders for §f%s§7.", Plugin.getItemName(stock)));
+				ChatUtils.send(player, String.format("\u00a77There are no buy orders for \u00a7f%s\u00a77.", Plugin.getItemName(stock)));
 				return;
 			}
 
@@ -342,7 +342,7 @@ public class PlayerListener implements Listener {
 				// message = format.format(format, o.getItemType(), added,
 				// Plugin.Round((added*o.getPrice()),dplaces),
 				// Plugin.Round(o.getPrice(),dplaces));
-				// ChatUtils.send(sender, "§a[Prevew] " + message);
+				// ChatUtils.send(sender, "\u00a7a[Prevew] " + message);
 
 				itemsTraded += traded;
 				amount -= traded;
@@ -351,13 +351,13 @@ public class PlayerListener implements Listener {
 
 			if (itemsTraded > 0) {
 
-				ChatUtils.send(player, String.format("§a[Estimate] §f%s§7x§f%s§7 will earn $§f%s§7, type §d/em confirm §7to confirm estimate.",
+				ChatUtils.send(player, String.format("\u00a7a[Estimate] \u00a7f%s\u00a77x\u00a7f%s\u00a77 will earn $\u00a7f%s\u00a77, type \u00a7d/em confirm \u00a77to confirm estimate.",
 					Plugin.getItemName(stock), itemsTraded, Plugin.Round(moneyProfited, Config.getInt("properties.price-decmial-places"))));
 
 			} else {
 				ChatUtils.send(
 					player,
-					String.format("§7There are no buy orders for §f%s§7x§f%s §7at $§f%s§7.", Plugin.getItemName(stock), amount,
+					String.format("\u00a77There are no buy orders for \u00a7f%s\u00a77x\u00a7f%s \u00a77at $\u00a7f%s\u00a77.", Plugin.getItemName(stock), amount,
 						Plugin.Round(sellPrice, dplaces)));
 				return;
 			}

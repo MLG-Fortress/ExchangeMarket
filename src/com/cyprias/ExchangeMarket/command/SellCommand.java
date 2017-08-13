@@ -68,7 +68,7 @@ public class SellCommand implements Command {
 		int intAmount = InventoryUtil.getAmount(stock, player.getInventory());
 
 		if (intAmount == 0) {
-			ChatUtils.error(sender, "§7You do not have any " + stock.getType());
+			ChatUtils.error(sender, "\u00a77You do not have any " + stock.getType());
 			return true;
 		}
 		
@@ -117,10 +117,10 @@ public class SellCommand implements Command {
 
 
 			if (orders.size() <= 0){
-				ChatUtils.send(sender, String.format("§7There are §f%s §7buy orders for §f%s§7, try creating a sell order.", orders.size(),Plugin.getItemName(stock)) );
+				ChatUtils.send(sender, String.format("\u00a77There are \u00a7f%s \u00a77buy orders for \u00a7f%s\u00a77, try creating a sell order.", orders.size(),Plugin.getItemName(stock)) );
 				return true;
 			//}else{
-			//	ChatUtils.send(sender, String.format("§7There are §f%s §7buy orders for §f%s§7.", orders.size(), stock.getType()) );
+			//	ChatUtils.send(sender, String.format("\u00a77There are \u00a7f%s \u00a77buy orders for \u00a7f%s\u00a77.", orders.size(), stock.getType()) );
 			}
 			
 			
@@ -162,7 +162,7 @@ public class SellCommand implements Command {
 				// message = format.format(format, o.getItemType(), added,
 				// Plugin.Round((added*o.getPrice()),dplaces),
 				// Plugin.Round(o.getPrice(),dplaces));
-				// ChatUtils.send(sender, "§a[Prevew] " + message);
+				// ChatUtils.send(sender, "\u00a7a[Prevew] " + message);
 
 				itemsTraded += traded;
 				amount -= traded;
@@ -171,7 +171,7 @@ public class SellCommand implements Command {
 
 			if (itemsTraded > 0) {
 
-				ChatUtils.send(sender, String.format("§a[Estimate] §f%s§7x§f%s§7 will earn $§f%s§7, type §d/em confirm §7to confirm estimate.",
+				ChatUtils.send(sender, String.format("\u00a7a[Estimate] \u00a7f%s\u00a77x\u00a7f%s\u00a77 will earn $\u00a7f%s\u00a77, type \u00a7d/em confirm \u00a77to confirm estimate.",
 					Plugin.getItemName(stock), itemsTraded, Plugin.Round(moneyProfited, Config.getInt("properties.price-decmial-places"))));
 
 			} else {

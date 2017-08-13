@@ -56,13 +56,13 @@ public class OrderInfoCommand implements Command {
 		
 		Order order = Plugin.database.getOrder(id);
 		if (order == null){
-			ChatUtils.send(sender, "§7That order does not exist.");
+			ChatUtils.send(sender, "\u00a77That order does not exist.");
 			return true;
 		}
 		
 		
 		if ((sender instanceof Player) && !sender.getName().equalsIgnoreCase(order.getPlayer())){
-			ChatUtils.send(sender, "§7That order does not belong to you.");
+			ChatUtils.send(sender, "\u00a77That order does not belong to you.");
 			return true;
 		}
 		
@@ -77,7 +77,7 @@ public class OrderInfoCommand implements Command {
 		
 		if (order.hasEnchantments())
 			for (Map.Entry<org.bukkit.enchantments.Enchantment, Integer> entry : order.getEnchantments().entrySet()) 
-				ChatUtils.sendSpam(sender, String.format("§f%s§7: §f%s", entry.getKey().getName(), entry.getValue()));
+				ChatUtils.sendSpam(sender, String.format("\u00a7f%s\u00a77: \u00a7f%s", entry.getKey().getName(), entry.getValue()));
 			
 			
 		

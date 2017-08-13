@@ -50,7 +50,7 @@ public class CollectCommand  implements Command {
 		List<Parcel> packages = Plugin.database.getPackages(sender);
 		
 		if (packages.size() <= 0){
-			ChatUtils.send(sender, "§7You have no mail to collect.");
+			ChatUtils.send(sender, "\u00a77You have no mail to collect.");
 			return true;
 		}
 		
@@ -77,7 +77,7 @@ public class CollectCommand  implements Command {
 				
 				//ChatUtils.send(sender, "Received " + stock.getType() + "x" + (canTake - leftover) + ", you have " + parcel.getAmount() +" left in your inbox.");
 				
-				ChatUtils.send(sender, String.format("§7Received §f%s§7x§f%s§7, you have §f%x §7remaining in your inbox.",
+				ChatUtils.send(sender, String.format("\u00a77Received \u00a7f%s\u00a77x\u00a7f%s\u00a77, you have \u00a7f%x \u00a77remaining in your inbox.",
 					Plugin.getItemName(stock), (canTake - leftover), parcel.getAmount()));
 				
 				noFound = false;
@@ -97,7 +97,7 @@ public class CollectCommand  implements Command {
 		
 		
 		if (noFound)
-			ChatUtils.send(sender, "§7Failed to receive mail.");
+			ChatUtils.send(sender, "\u00a77Failed to receive mail.");
 		
 		
 		return true;

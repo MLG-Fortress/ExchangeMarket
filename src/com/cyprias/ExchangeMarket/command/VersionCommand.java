@@ -44,12 +44,12 @@ public class VersionCommand implements Command {
 						if (info != null) {
 							Logger.info("compare " + VersionChecker.compareVersions(curVersion, info.getTitle()));
 							if (VersionChecker.compareVersions(curVersion, info.getTitle()) < 0) {
-								ChatUtils.send(sender, "§7We're running v§f" + curVersion + "§7, v§f" + info.getTitle() + " §7is available");
+								ChatUtils.send(sender, "\u00a77We're running v\u00a7f" + curVersion + "\u00a77, v\u00a7f" + info.getTitle() + " \u00a77is available");
 							} else if (VersionChecker.compareVersions(curVersion, info.getTitle()) == 1) {
-								ChatUtils.send(sender, "§7We're running the latest version v§f" + curVersion);
+								ChatUtils.send(sender, "\u00a77We're running the latest version v\u00a7f" + curVersion);
 							}
 						} else {
-							ChatUtils.send(sender, "§7We're running version v§f" + curVersion);
+							ChatUtils.send(sender, "\u00a77We're running version v\u00a7f" + curVersion);
 						}
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -60,7 +60,7 @@ public class VersionCommand implements Command {
 				}
 			});
 		} else {
-			ChatUtils.send(sender, "§7We're running version v§f" + instance.getDescription().getVersion());
+			ChatUtils.send(sender, "\u00a77We're running version v\u00a7f" + instance.getDescription().getVersion());
 		}
 
 		return true;

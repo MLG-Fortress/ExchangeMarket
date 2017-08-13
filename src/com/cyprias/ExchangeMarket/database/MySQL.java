@@ -402,7 +402,7 @@ public class MySQL implements Database {
 		}
 
 		
-		ChatUtils.send(sender, "§7Page: §f" + (page+1) + "§7/§f" + (max+1));
+		ChatUtils.send(sender, "\u00a77Page: \u00a7f" + (page+1) + "\u00a77/\u00a7f" + (max+1));
 		queryReturn results;
 		if (rows == 0)
 			return null;
@@ -704,7 +704,7 @@ public class MySQL implements Database {
 		}
 
 
-		ChatUtils.send(sender, "§7Page: §f" + (page+1) + "§7/§f" + (max+1));
+		ChatUtils.send(sender, "\u00a77Page: \u00a7f" + (page+1) + "\u00a77/\u00a7f" + (max+1));
 		
 		if (rows <= 0)
 			return null;
@@ -797,7 +797,7 @@ public class MySQL implements Database {
 
 		
 		
-		ChatUtils.send(sender, "§7Page: §f" + (page+1) + "§7/§f" + (max+1));
+		ChatUtils.send(sender, "\u00a77Page: \u00a7f" + (page+1) + "\u00a77/\u00a7f" + (max+1));
 
 		if (rows == 0)
 			return null;

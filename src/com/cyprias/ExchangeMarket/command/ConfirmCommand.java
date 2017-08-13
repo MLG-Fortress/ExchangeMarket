@@ -102,11 +102,11 @@ public class ConfirmCommand implements Command {
 
 		if (expiredTransactions.containsKey(sender.getName())) {
 			expiredTransactions.remove(sender.getName());
-			ChatUtils.send(sender, "§7Your previous estimite has expired, start over.");
+			ChatUtils.send(sender, "\u00a77Your previous estimite has expired, start over.");
 			return true;
 		}
 		if (!pendingTransactions.containsKey(sender.getName())) {
-			ChatUtils.send(sender, "§7You have no transaction to confirm.");
+			ChatUtils.send(sender, "\u00a77You have no transaction to confirm.");
 			return true;
 		}
 
@@ -168,7 +168,7 @@ public class ConfirmCommand implements Command {
 				if (Config.getBoolean("properties.show-orderer-each-transaction"))
 					ChatUtils.send(
 						sender,
-						String.format("§7Bought §f%s§7x§f%s §7for $§f%s §7($§f%s§7e).", Plugin.getItemName(stock), traded, Plugin.Round(spend, places),
+						String.format("\u00a77Bought \u00a7f%s\u00a77x\u00a7f%s \u00a77for $\u00a7f%s \u00a77($\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Plugin.Round(spend, places),
 							Plugin.Round(order.getPrice(), places)));
 
 			}
@@ -177,17 +177,17 @@ public class ConfirmCommand implements Command {
 
 			if (moneyTraded > 0) {
 				ChatUtils.send(sender,
-					String.format("§7Spent $§f%s §7buying §f%s§7x§f%s§7.", Plugin.Round(moneyTraded, places), Plugin.getItemName(stock), totalTraded));
+					String.format("\u00a77Spent $\u00a7f%s \u00a77buying \u00a7f%s\u00a77x\u00a7f%s\u00a77.", Plugin.Round(moneyTraded, places), Plugin.getItemName(stock), totalTraded));
 
 			} else {
 				if (stock != null){
 					stock.setAmount(1);
 					if (!InventoryUtil.fits(stock, ((Player) sender).getInventory())) {
-						ChatUtils.send(sender, "§7You have no bag space available.");
+						ChatUtils.send(sender, "\u00a77You have no bag space available.");
 						return true;
 					}
 				}
-				ChatUtils.send(sender, "§7Cannot confirm that order anymore, start over.");
+				ChatUtils.send(sender, "\u00a77Cannot confirm that order anymore, start over.");
 				pendingTransactions.remove(sender.getName());
 
 			}
@@ -247,7 +247,7 @@ public class ConfirmCommand implements Command {
 				if (Config.getBoolean("properties.show-orderer-each-transaction"))
 					ChatUtils.send(
 						sender,
-						String.format("§7Sold §f%s§7x§f%s §7for $§f%s §7($§f%s§7e).", Plugin.getItemName(stock), traded, Plugin.Round(profit, places),
+						String.format("\u00a77Sold \u00a7f%s\u00a77x\u00a7f%s \u00a77for $\u00a7f%s \u00a77($\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Plugin.Round(profit, places),
 							Plugin.Round(order.getPrice(), places)));
 
 				// po.order
@@ -256,13 +256,13 @@ public class ConfirmCommand implements Command {
 			if (moneyTraded > 0) {
 				Plugin.database.cleanEmpties();
 				ChatUtils.send(sender,
-					String.format("§7Made $§f%s §7selling §f%s§7x§f%s§7.", Plugin.Round(moneyTraded, places), Plugin.getItemName(stock), totalTraded));
+					String.format("\u00a77Made $\u00a7f%s \u00a77selling \u00a7f%s\u00a77x\u00a7f%s\u00a77.", Plugin.Round(moneyTraded, places), Plugin.getItemName(stock), totalTraded));
 
 			} else if (stock != null && InventoryUtil.getAmount(stock, pT.player.getInventory()) == 0) {
-				ChatUtils.send(sender, "§7You have no §f" + Plugin.getItemName(stock) + " §7to sell.");
+				ChatUtils.send(sender, "\u00a77You have no \u00a7f" + Plugin.getItemName(stock) + " \u00a77to sell.");
 
 			} else {
-				ChatUtils.send(sender, "§7Cannot confirm that order anymore, start over.");
+				ChatUtils.send(sender, "\u00a77Cannot confirm that order anymore, start over.");
 				pendingTransactions.remove(sender.getName());
 			}
 

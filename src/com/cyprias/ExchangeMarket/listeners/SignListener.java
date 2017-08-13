@@ -93,12 +93,12 @@ public class SignListener implements Listener {
 
 		int pl = Config.getInt("properties.price-decmial-places");
 
-		ChatUtils.send(player, String.format("§7Created exchange sign for §f%s§7x§f%s§7.", Plugin.getItemName(stock), amount));
+		ChatUtils.send(player, String.format("\u00a77Created exchange sign for \u00a7f%s\u00a77x\u00a7f%s\u00a77.", Plugin.getItemName(stock), amount));
 		if (buyPrice > 0) {
-			ChatUtils.send(player, String.format("§7Buy price: $§f%s §7($§f%s§7e)", Plugin.Round(buyPrice, pl), Plugin.Round(buyPrice / amount, pl)));
+			ChatUtils.send(player, String.format("\u00a77Buy price: $\u00a7f%s \u00a77($\u00a7f%s\u00a77e)", Plugin.Round(buyPrice, pl), Plugin.Round(buyPrice / amount, pl)));
 		}
 		if (sellPrice > 0) {
-			ChatUtils.send(player, String.format("§7Sell price: $§f%s §7($§f%s§7e)", Plugin.Round(sellPrice, pl), Plugin.Round(sellPrice / amount, pl)));
+			ChatUtils.send(player, String.format("\u00a77Sell price: $\u00a7f%s \u00a77($\u00a7f%s\u00a77e)", Plugin.Round(sellPrice, pl), Plugin.Round(sellPrice / amount, pl)));
 		}
 
 	}

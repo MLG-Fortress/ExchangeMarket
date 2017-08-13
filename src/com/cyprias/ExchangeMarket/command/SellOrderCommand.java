@@ -206,7 +206,7 @@ public class SellOrderCommand implements Command {
 					
 					ChatUtils.send(
 						sender,
-						String.format("§7Sold §f%s§7x§f%s §7for $§f%s §7($§f%s§7e).", Plugin.getItemName(stock), traded, Plugin.Round(profit, pl),
+						String.format("\u00a77Sold \u00a7f%s\u00a77x\u00a7f%s \u00a77for $\u00a7f%s \u00a77($\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Plugin.Round(profit, pl),
 							Plugin.Round(o.getPrice(), pl)));
 					
 					
@@ -239,7 +239,7 @@ public class SellOrderCommand implements Command {
 			//Logger.debug("taxAmount: " + taxAmount);
 			
 			if (Econ.getBalance(sender.getName()) < taxAmount){
-				ChatUtils.send(sender, String.format("§7You do not have $§f%s §7needed to place that sell order.", Plugin.Round(taxAmount, Config.getInt("properties.price-decmial-places"))));
+				ChatUtils.send(sender, String.format("\u00a77You do not have $\u00a7f%s \u00a77needed to place that sell order.", Plugin.Round(taxAmount, Config.getInt("properties.price-decmial-places"))));
 				return true;
 			}
 		}
@@ -261,7 +261,7 @@ public class SellOrderCommand implements Command {
 				// ChatUtils.send(sender, "Increased amount " + mAmount + "+" +
 				// amount + "=" + matchingOrder.getAmount());
 
-				ChatUtils.send(sender, String.format("§7Increased your existing sell order #§f%s §7of §f%s §7to §f%s§7.", matchingOrder.getId(),
+				ChatUtils.send(sender, String.format("\u00a77Increased your existing sell order #\u00a7f%s \u00a77of \u00a7f%s \u00a77to \u00a7f%s\u00a77.", matchingOrder.getId(),
 					Plugin.getItemName(stock), matchingOrder.getAmount())); // amount
 
 				// InventoryUtil.remove(stock, player.getInventory());
@@ -271,13 +271,13 @@ public class SellOrderCommand implements Command {
 				// +" amount from " + sender.getName() + "'s inventory. stock: "
 				// + stock.getAmount() + ", inserted: " + amount);
 
-				ChatUtils.send(sender, String.format("§f%s§7x§f%s §7has been withdrawnfrom your inventory.", Plugin.getItemName(stock), amount));
+				ChatUtils.send(sender, String.format("\u00a7f%s\u00a77x\u00a7f%s \u00a77has been withdrawnfrom your inventory.", Plugin.getItemName(stock), amount));
 
 				if (Config.getDouble("taxes.sellOrder") > 0){
 					double taxAmount = Config.getDouble("taxes.sellOrder") * (amount * preOrder.getPrice());
 					EconomyResponse r = Econ.withdrawPlayer(sender.getName(), taxAmount);
 					if (r.transactionSuccess()) {
-						ChatUtils.send(sender, String.format("$§f%s §7(§f%s§7%%) tax has been withdrawn from your account.", Plugin.Round(r.amount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellOrder") * 100)));
+						ChatUtils.send(sender, String.format("$\u00a7f%s \u00a77(\u00a7f%s\u00a77%%) tax has been withdrawn from your account.", Plugin.Round(r.amount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellOrder") * 100)));
 					} else {
 						ChatUtils.send(sender, String.format("An error occured: %s", r.errorMessage));
 					}
@@ -289,7 +289,7 @@ public class SellOrderCommand implements Command {
 			if (Config.getInt("properties.identical-orders-per-player") > 0){
 				int existingOrders = Plugin.database.getPlayerItemOrderCount(sender, stock);
 				if (existingOrders >= Config.getInt("properties.identical-orders-per-player")){
-					ChatUtils.send(sender, String.format("§7You have too many orders for §f%s§7, remove one and try again.", Plugin.getItemName(stock)));
+					ChatUtils.send(sender, String.format("\u00a77You have too many orders for \u00a7f%s\u00a77, remove one and try again.", Plugin.getItemName(stock)));
 					return true;
 				}
 			}
@@ -299,7 +299,7 @@ public class SellOrderCommand implements Command {
 
 				// ChatUtils.send(sender, "Created sell order " + id);
 
-				ChatUtils.send(sender, String.format("§7Created sell order #§f%s §7for §f%s§7x§f%s §7@ §f%s §7(§f%s§7e)", id, Plugin.getItemName(stock),
+				ChatUtils.send(sender, String.format("\u00a77Created sell order #\u00a7f%s \u00a77for \u00a7f%s\u00a77x\u00a7f%s \u00a77@ \u00a7f%s \u00a77(\u00a7f%s\u00a77e)", id, Plugin.getItemName(stock),
 					preOrder.getAmount(), Plugin.Round(preOrder.getPrice() * preOrder.getAmount(), pl), Plugin.Round(preOrder.getPrice(), pl)));
 
 				InventoryUtil.remove(stock, player.getInventory());
@@ -308,13 +308,13 @@ public class SellOrderCommand implements Command {
 					Logger.warning("(B) We removed the wrong " + Plugin.getItemName(stock) + " amount from " + sender.getName() + "'s inventory. stock: "
 						+ stock.getAmount() + ", inserted: " + (preOrder.getAmount()));
 
-				ChatUtils.send(sender, String.format("§f%s§7x§f%s §7has been withdrawnfrom your inventory.", Plugin.getItemName(stock), stock.getAmount()));
+				ChatUtils.send(sender, String.format("\u00a7f%s\u00a77x\u00a7f%s \u00a77has been withdrawnfrom your inventory.", Plugin.getItemName(stock), stock.getAmount()));
 
 				if (Config.getDouble("taxes.sellOrder") > 0){
 					double taxAmount = Config.getDouble("taxes.sellOrder") * (amount * preOrder.getPrice());
 					EconomyResponse r = Econ.withdrawPlayer(sender.getName(), taxAmount);
 					if (r.transactionSuccess()) {
-						ChatUtils.send(sender, String.format("$§f%s §7(§f%s§7%%) tax has been withdrawn from your account.", Plugin.Round(r.amount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellOrder")*100)));
+						ChatUtils.send(sender, String.format("$\u00a7f%s \u00a77(\u00a7f%s\u00a77%%) tax has been withdrawn from your account.", Plugin.Round(r.amount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellOrder")*100)));
 					} else {
 						ChatUtils.send(sender, String.format("An error occured: %s", r.errorMessage));
 					}

@@ -42,7 +42,7 @@ public class BuyListCommand implements Command {
 			List<Order> orders = Plugin.database.list(sender, Order.BUY_ORDER, page);
 			
 			if (orders == null || orders.size() <= 0){
-				ChatUtils.send(sender, "§7There are no orders present.");
+				ChatUtils.send(sender, "\u00a77There are no orders present.");
 				return true;
 			}
 			

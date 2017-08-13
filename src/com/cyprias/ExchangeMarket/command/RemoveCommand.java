@@ -53,14 +53,14 @@ public class RemoveCommand implements Command {
 		Order order = Plugin.database.getOrder(id);
 		
 		if (order == null){
-			ChatUtils.send(sender, "§7That order does not exist.");
+			ChatUtils.send(sender, "\u00a77That order does not exist.");
 			return true;
 		}
 		
 		if (order.remove()){
-			ChatUtils.send(sender, "§7Order #§f" + id + " §7has been removed from the database.");
+			ChatUtils.send(sender, "\u00a77Order #\u00a7f" + id + " \u00a77has been removed from the database.");
 		}else{
-			ChatUtils.send(sender, "§7Unknown failure, could not remove order.");
+			ChatUtils.send(sender, "\u00a77Unknown failure, could not remove order.");
 		}
 		return true;
 	}

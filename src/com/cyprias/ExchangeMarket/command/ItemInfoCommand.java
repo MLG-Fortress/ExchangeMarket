@@ -57,16 +57,16 @@ public class ItemInfoCommand implements Command {
 		//
 		
 		
-		ChatUtils.send(sender, String.format("§7Item: §f%s§7, id: §f%s", Plugin.getItemName(stock), stock.getTypeId() + ((stock.getDurability() > 0) ? ":"+stock.getDurability() : "")));
+		ChatUtils.send(sender, String.format("\u00a77Item: \u00a7f%s\u00a77, id: \u00a7f%s", Plugin.getItemName(stock), stock.getTypeId() + ((stock.getDurability() > 0) ? ":"+stock.getDurability() : "")));
 		
 		if (stock.getEnchantments().size() > 0){
-			//§7
+			//\u00a77
 			//ChatUtils.send(sender, %s: %s");
 			
 			for (Map.Entry<org.bukkit.enchantments.Enchantment, Integer> entry : stock.getEnchantments().entrySet()) {
 			//	ExchangeMarket.sendMessage(sender, entry.getKey().getName() + " " + entry.getValue());
 				
-				ChatUtils.send(sender, String.format("§f%s§7: §f%s", entry.getKey().getName(), entry.getValue()));
+				ChatUtils.send(sender, String.format("\u00a7f%s\u00a77: \u00a7f%s", entry.getKey().getName(), entry.getValue()));
 				
 			}
 			

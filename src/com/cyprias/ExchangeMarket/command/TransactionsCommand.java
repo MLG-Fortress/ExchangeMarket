@@ -54,7 +54,7 @@ public class TransactionsCommand implements Command {
 		List<Transaction> transactions = Plugin.database.listTransactions(sender, page);
 		
 		if (transactions == null || transactions.size() <= 0){
-			ChatUtils.send(sender, "§7You have had no transactions.");
+			ChatUtils.send(sender, "\u00a77You have had no transactions.");
 			return true;
 		}
 			
@@ -64,9 +64,9 @@ public class TransactionsCommand implements Command {
 			date = new SimpleDateFormat("MM/dd/yy").format(transaction.getTimestamp());
 			
 			if (transaction.getType() == Order.BUY_ORDER){
-				ChatUtils.sendSpam(sender, String.format("§7Bought §f%s§7x§f%s §7from §f%s §7on §f%s§7.", transaction.getItemName(), transaction.getAmount(), transaction.getOrderer(), date));
+				ChatUtils.sendSpam(sender, String.format("\u00a77Bought \u00a7f%s\u00a77x\u00a7f%s \u00a77from \u00a7f%s \u00a77on \u00a7f%s\u00a77.", transaction.getItemName(), transaction.getAmount(), transaction.getOrderer(), date));
 			}else if (transaction.getType() == Order.SELL_ORDER){
-				ChatUtils.sendSpam(sender, String.format("§7Sold §f%s§7x§f%s §7to §f%s §7on §f%s§7.", transaction.getItemName(), transaction.getAmount(), transaction.getOrderer(), date));
+				ChatUtils.sendSpam(sender, String.format("\u00a77Sold \u00a7f%s\u00a77x\u00a7f%s \u00a77to \u00a7f%s \u00a77on \u00a7f%s\u00a77.", transaction.getItemName(), transaction.getAmount(), transaction.getOrderer(), date));
 				
 			}
 		}

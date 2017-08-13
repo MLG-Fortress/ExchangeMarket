@@ -105,14 +105,14 @@ public class PriceCommand implements Command {
 				Logger.debug("totalAmount: " + totalAmount + ", totalPrice: " + totalPrice);
 				
 				
-				ChatUtils.send(sender, String.format("§7There are §f%s §7orders containing §f%s %s§7.", orders.size(), totalAmount, Plugin.getItemName(stock)));
+				ChatUtils.send(sender, String.format("\u00a77There are \u00a7f%s \u00a77orders containing \u00a7f%s %s\u00a77.", orders.size(), totalAmount, Plugin.getItemName(stock)));
 				
 				
 				
 				int dplaces = Config.getInt("properties.price-decmial-places");
 				
 				if (orders.size() > 1)
-					ChatUtils.send(sender, String.format("§7Lowest price: $§f%s §7(x§f%s§7), Highest price: $§f%s §7(x§f%s§7)",  Plugin.Round(lowest*amount,dplaces), lowestAmount, Plugin.Round(highest*amount,dplaces), highestAmount));
+					ChatUtils.send(sender, String.format("\u00a77Lowest price: $\u00a7f%s \u00a77(x\u00a7f%s\u00a77), Highest price: $\u00a7f%s \u00a77(x\u00a7f%s\u00a77)",  Plugin.Round(lowest*amount,dplaces), lowestAmount, Plugin.Round(highest*amount,dplaces), highestAmount));
 				
 				
 				double average = totalPrice / totalAmount;
@@ -123,11 +123,11 @@ public class PriceCommand implements Command {
 				String median = Plugin.Round(median(dPrices)*amount,dplaces);
 				String mode = Plugin.Round(mode(dPrices)*amount,dplaces);
 				
-				ChatUtils.send(sender, String.format("§7Average: $§f%s§7, mean:$§f%s§7, med:$§f%s§7, mod:$§f%s§7.", Plugin.Round(average*amount,dplaces), mean, median, mode));
+				ChatUtils.send(sender, String.format("\u00a77Average: $\u00a7f%s\u00a77, mean:$\u00a7f%s\u00a77, med:$\u00a7f%s\u00a77, mod:$\u00a7f%s\u00a77.", Plugin.Round(average*amount,dplaces), mean, median, mode));
 				
 				
 			}else{
-				ChatUtils.send(sender, String.format("§7There are no orders containing §f%s§7.", Plugin.getItemName(stock)));
+				ChatUtils.send(sender, String.format("\u00a77There are no orders containing \u00a7f%s\u00a77.", Plugin.getItemName(stock)));
 			}
 			
 			

@@ -98,15 +98,15 @@ public class BuyCommand implements Command {
 			
 			
 			if (orders.size() <= 0){
-				ChatUtils.send(sender, String.format("§7There are §f%s §7sell orders for §f%s§7, try creating a buy order.", orders.size(), Plugin.getItemName(stock)) );
+				ChatUtils.send(sender, String.format("\u00a77There are \u00a7f%s \u00a77sell orders for \u00a7f%s\u00a77, try creating a buy order.", orders.size(), Plugin.getItemName(stock)) );
 				return true;
 			//}else{
-			//	ChatUtils.send(sender, String.format("§7There are §f%s §7sell orders for §f%s§7.", orders.size(), stock.getType()) );
+			//	ChatUtils.send(sender, String.format("\u00a77There are \u00a7f%s \u00a77sell orders for \u00a7f%s\u00a77.", orders.size(), stock.getType()) );
 			}
 			
 			
 			
-		//	String format = "§7Bought §f%s§7x§f%s §7@ $§f%s §7($§f%s§7e)";
+		//	String format = "\u00a77Bought \u00a7f%s\u00a77x\u00a7f%s \u00a77@ $\u00a7f%s \u00a77($\u00a7f%s\u00a77e)";
 			
 			//String message;
 			int dplaces = Config.getInt("properties.price-decmial-places");
@@ -125,7 +125,7 @@ public class BuyCommand implements Command {
 			//ConfirmCommand.pendingOrders.put(sender.getName(), value)
 			
 			if (Econ.getBalance(sender.getName()) <= 0){
-				ChatUtils.send(sender, String.format("§7You have no money in your account."));
+				ChatUtils.send(sender, String.format("\u00a77You have no money in your account."));
 				return true;
 			}
 			
@@ -171,7 +171,7 @@ public class BuyCommand implements Command {
 				Logger.debug(o.getId() + " x" + o.getAmount() + ", canTrade: " + canTrade + " (" + (canTrade * o.getPrice()) + ") traded: " + traded + ", player: " + o.getPlayer());
 
 				//message = format.format(format, o.getItemType(), added, Plugin.Round((added*o.getPrice()),dplaces), Plugin.Round(o.getPrice(),dplaces));
-				//ChatUtils.send(sender, "§a[Prevew] " + message);
+				//ChatUtils.send(sender, "\u00a7a[Prevew] " + message);
 				
 				itemsTraded += traded;
 				amount -=traded;
@@ -179,18 +179,18 @@ public class BuyCommand implements Command {
 			}
 			
 			if (moneySpent > 0){
-				ChatUtils.send(sender, String.format("§a[Estimate] §f%s§7x§f%s§7 will cost $§f%s§7, type §d/em confirm §7to confirm estimate.", Plugin.getItemName(stock), itemsTraded, Plugin.Round(moneySpent, dplaces)));
+				ChatUtils.send(sender, String.format("\u00a7a[Estimate] \u00a7f%s\u00a77x\u00a7f%s\u00a77 will cost $\u00a7f%s\u00a77, type \u00a7d/em confirm \u00a77to confirm estimate.", Plugin.getItemName(stock), itemsTraded, Plugin.Round(moneySpent, dplaces)));
 			}else{
 				stock.setAmount(1);
 				if (!InventoryUtil.fits(stock, player.getInventory())){
-					ChatUtils.send(sender, "§7You have no bag space available.");
+					ChatUtils.send(sender, "\u00a77You have no bag space available.");
 				
 				}else{
 					
 					if (orders.size() > 0){
-						ChatUtils.send(sender, String.format("§7You cannot afford any §f%s§7.", Plugin.getItemName(stock)));
+						ChatUtils.send(sender, String.format("\u00a77You cannot afford any \u00a7f%s\u00a77.", Plugin.getItemName(stock)));
 					}else{
-						ChatUtils.send(sender, "§7Failed to buy any items, try creating a buy order.");
+						ChatUtils.send(sender, "\u00a77Failed to buy any items, try creating a buy order.");
 					}
 					
 					
