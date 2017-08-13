@@ -50,7 +50,7 @@ public class CollectCommand  implements Command {
 		List<Parcel> packages = Plugin.database.getPackages(sender);
 		
 		if (packages.size() <= 0){
-			ChatUtils.send(sender, "\u00a77You have no mail to collect.");
+			ChatUtils.send(sender, "\u00a77You have no items to collect.");
 			return true;
 		}
 		

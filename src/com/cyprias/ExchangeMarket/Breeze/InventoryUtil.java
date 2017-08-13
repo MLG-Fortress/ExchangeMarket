@@ -113,7 +113,7 @@ public class InventoryUtil {
 
     /**
 * Adds an item to the inventory
-* (it currently uses a custom method of adding items, because Bukkit hasn't fixed it for 6 months now)
+* <s>(it currently uses a custom method of adding items, because Bukkit hasn't fixed it for 6 months now)</s>
 *
 * @param item Item to add
 * @param inventory Inventory
@@ -124,9 +124,13 @@ public class InventoryUtil {
             return 0;
         }
 
-        int amountLeft = item.getAmount();
+        //int amountLeft = item.getAmount();
+        int amountLeft = 0;
         int maxStackSize = item.getMaxStackSize();
 
+        Map<Integer, ItemStack> remainingItems = inventory.addItem(item);
+
+        /*
         for (int currentSlot = 0; currentSlot < inventory.getSize() && amountLeft > 0; currentSlot++) {
             ItemStack currentItem = inventory.getItem(currentSlot);
             ItemStack duplicate = item.clone();
@@ -149,6 +153,12 @@ public class InventoryUtil {
 
                 inventory.setItem(currentSlot, duplicate);
             }
+        }
+        */
+
+        for (ItemStack itemStack : remainingItems.values())
+        {
+            amountLeft += itemStack.getAmount();
         }
 
         return amountLeft;

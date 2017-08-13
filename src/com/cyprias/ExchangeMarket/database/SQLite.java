@@ -520,7 +520,9 @@ public class SQLite implements Database {
 	}
 
 	//RoboMWM - fix stupid sqlite's stupid stupid stupid
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    //Pointers provided by https://github.com/games647/FastLogin/commit/157ca0469175189418efd1c0669442548276e0a1
+    //However, since this doesn't use Hikari... we used this instead: https://stackoverflow.com/a/41238875
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Override
 	public List<Parcel> getPackages(CommandSender sender) throws SQLException {
@@ -542,7 +544,7 @@ public class SQLite implements Database {
                 e.printStackTrace();
                 continue;
             }
-			
+
             Timestamp timestamp = new Timestamp(date.getTime());
 			packages.add(new Parcel(r.getInt("id"), r.getString("player"), r.getInt("itemId"), r.getShort("itemDur"), r.getString("itemEnchant"), r.getInt("amount"), timestamp));
 		}
