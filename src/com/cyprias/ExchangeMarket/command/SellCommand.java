@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
@@ -44,7 +46,7 @@ public class SellCommand implements Command {
 			return false;
 		}
 		Player player = (Player) sender;
-		if (Config.getBoolean("properties.block-usage-in-creative") == true && player.getGameMode().getValue() == 1) {
+		if (Config.getBoolean("properties.block-usage-in-creative") == true && player.getGameMode() == GameMode.CREATIVE) {
 			ChatUtils.send(sender, "Cannot use ExchangeMarket while in creative mode.");
 			return true;
 		}
@@ -60,7 +62,7 @@ public class SellCommand implements Command {
 		}
 
 		ItemStack stock = Plugin.getItemStack(args[0]);
-		if (stock == null || stock.getTypeId() == 0) {
+		if (stock == null || stock.getType() == Material.AIR) {
 			ChatUtils.error(sender, "Unknown item: " + args[0]);
 			return true;
 		}
@@ -68,7 +70,7 @@ public class SellCommand implements Command {
 		int intAmount = InventoryUtil.getAmount(stock, player.getInventory());
 
 		if (intAmount == 0) {
-			ChatUtils.error(sender, "\u00a77You do not have any " + stock.getType());
+			ChatUtils.error(sender, "\u00a77You do not have any " + Plugin.getItemName(stock));
 			return true;
 		}
 		
@@ -117,7 +119,7 @@ public class SellCommand implements Command {
 
 
 			if (orders.size() <= 0){
-				ChatUtils.send(sender, String.format("\u00a77There are \u00a7f%s \u00a77buy orders for \u00a7f%s\u00a77, try creating a sell order.", orders.size(),Plugin.getItemName(stock)) );
+				ChatUtils.send(sender, String.format("\u00a77There are \u00a7f%s \u00a77buy orders for \u00a7f%s\u00a77, try creating a /sellorder.", orders.size(),Plugin.getItemName(stock)) );
 				return true;
 			//}else{
 			//	ChatUtils.send(sender, String.format("\u00a77There are \u00a7f%s \u00a77buy orders for \u00a7f%s\u00a77.", orders.size(), stock.getType()) );
@@ -176,7 +178,7 @@ public class SellCommand implements Command {
 
 			} else {
 
-				ChatUtils.send(sender, "Failed to sell any items, try creating a sell order.");
+				ChatUtils.send(sender, "Failed to sell any items, try creating a /sellorder.");
 
 			}
 

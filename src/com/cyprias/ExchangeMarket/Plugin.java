@@ -469,7 +469,18 @@ public class Plugin extends JavaPlugin {
 	}
 
 	public static String getItemName(int itemId, short itemDur, String itemEnchant) {
-		String id_dur = String.valueOf(itemId);
+		StringBuilder name = new StringBuilder();
+		ItemStack itemStack = new ItemStack(itemId, 1, itemDur);
+		name.append(itemStack.getI18NDisplayName());
+		name.append(" (");
+		name.append(itemId);
+		if (itemDur != 0)
+			name.append(":" + itemDur);
+		name.append(")");
+
+		return name.toString();
+
+		/*String id_dur = String.valueOf(itemId);
 		if (itemDur > 0)
 			id_dur += ":" + itemDur;
 
@@ -489,15 +500,16 @@ public class Plugin extends JavaPlugin {
 		}
 
 		return id_dur + ((itemEnchant != null) ? itemEnchant : "");
+		*/
 	}
 
-	public static String getItemName(int itemId, short itemDur) {
-		return getItemName(itemId, itemDur, null);
-	}
-
-	public static String getItemName(int itemId) {
-		return getItemName(itemId, (short) 0);
-	}
+//	public static String getItemName(int itemId, short itemDur) {
+//		return getItemName(itemId, itemDur, null);
+//	}
+//
+//	public static String getItemName(int itemId) {
+//		return getItemName(itemId, (short) 0);
+//	}
 
 	public void copy(InputStream in, File file) throws IOException {
 		OutputStream out = new FileOutputStream(file);

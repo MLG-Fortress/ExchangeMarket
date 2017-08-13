@@ -59,7 +59,6 @@ public class CollectCommand  implements Command {
 		int leftover, canTake;
 		boolean noFound = true;
 		for (Parcel parcel : packages){
-			
 		
 			stock = parcel.getItemStack();
 
