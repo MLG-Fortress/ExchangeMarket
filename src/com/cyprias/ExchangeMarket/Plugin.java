@@ -244,7 +244,7 @@ public class Plugin extends JavaPlugin {
 		CommandManager.unregisterCommands();
 		this.getCommand("em").setExecutor(null);
 
-		instance.getServer().getScheduler().cancelAllTasks();
+		instance.getServer().getScheduler().cancelTasks(this);
 
 		PlayerListener.unregisterEvents(instance);
 		SignListener.unregisterEvents(instance);
