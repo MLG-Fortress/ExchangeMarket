@@ -62,8 +62,10 @@ public class CollectCommand  implements Command {
 			
 		
 			stock = parcel.getItemStack();
-			
-			canTake = Plugin.getFitAmount(stock, parcel.getAmount(), player.getInventory());
+
+			//RoboMWM - getFitAmount seems quite useless here...
+			//canTake = Plugin.getFitAmount(stock, parcel.getAmount(), player.getInventory());
+            canTake = parcel.getAmount();
 			
 			stock.setAmount(canTake);
 
@@ -71,6 +73,7 @@ public class CollectCommand  implements Command {
 
 
             if (parcel.setAmount(parcel.getAmount() - canTake)){
+                Bukkit.broadcastMessage("EM: parcel#getAmount: " + parcel.getAmount());
 				leftover = InventoryUtil.add(stock, player.getInventory());
 				if (leftover > 0)
 					parcel.setAmount(parcel.getAmount() + leftover);
