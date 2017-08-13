@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
@@ -65,12 +66,16 @@ public class CollectCommand  implements Command {
 			canTake = Plugin.getFitAmount(stock, parcel.getAmount(), player.getInventory());
 			
 			stock.setAmount(canTake);
-			
-			
-			if (parcel.setAmount(parcel.getAmount() - canTake)){
+
+            Bukkit.broadcastMessage("EM: cantake: " + canTake + "parcel#getAmount: " + parcel.getAmount() + " stock#getAmount: " + stock.getAmount());
+
+
+            if (parcel.setAmount(parcel.getAmount() - canTake)){
 				leftover = InventoryUtil.add(stock, player.getInventory());
 				if (leftover > 0)
 					parcel.setAmount(parcel.getAmount() + leftover);
+
+                Bukkit.broadcastMessage("EM: leftover: " + leftover);
 				
 				Logger.debug("canTake: " + canTake + ", leftover: " + leftover);
 				
