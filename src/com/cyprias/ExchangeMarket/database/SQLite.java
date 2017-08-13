@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -516,7 +519,10 @@ public class SQLite implements Database {
 		return amount;
 	}
 
-	@Override
+	//RoboMWM - fix stupid sqlite's stupid stupid stupid
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    @Override
 	public List<Parcel> getPackages(CommandSender sender) throws SQLException {
 		// TODO Auto-generated method stub
 		List<Parcel> packages = new ArrayList<Parcel>();
@@ -524,10 +530,21 @@ public class SQLite implements Database {
 		queryReturn results = executeQuery("SELECT * FROM `"+mailbox_table+"` WHERE `player` LIKE ?", sender.getName());
 		
 		ResultSet r = results.result;
+		java.util.Date date;
 		while (r.next()) {
+
+		    try
+            {
+                date = formatter.parse(r.getString("time"));
+            }
+            catch (ParseException e)
+            {
+                e.printStackTrace();
+                continue;
+            }
 			
-			
-			packages.add(new Parcel(r.getInt("id"), r.getString("player"), r.getInt("itemId"), r.getShort("itemDur"), r.getString("itemEnchant"), r.getInt("amount"), r.getTimestamp("time")));
+            Timestamp timestamp = new Timestamp(date.getTime());
+			packages.add(new Parcel(r.getInt("id"), r.getString("player"), r.getInt("itemId"), r.getShort("itemDur"), r.getString("itemEnchant"), r.getInt("amount"), timestamp));
 		}
 		
 		results.close();
