@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.bukkit.command.CommandSender;
@@ -720,10 +721,22 @@ public class SQLite implements Database {
 		
 		queryReturn results = executeQuery("SELECT * FROM `"+transaction_table+"` ORDER BY `id` LIMIT "+(perPage * page)+" , " + perPage);
 		ResultSet r = results.result;
+        Date date;
 		
 		//List<Order> orders = new ArrayList<Order>();
 		Transaction transaction;
 		while (r.next()) {
+
+            try
+            {
+                date = formatter.parse(r.getString("timestamp"));
+            }
+            catch (ParseException e)
+            {
+                e.printStackTrace();
+                continue;
+            }
+
 		//	Logger.info("id: " + r.getInt(1));
 			transaction = new Transaction(
 				r.getInt("id"),
@@ -735,7 +748,7 @@ public class SQLite implements Database {
 				r.getInt("amount"),
 				r.getDouble("price"),
 				r.getString("seller"),
-				r.getTimestamp("timestamp")
+				new Timestamp(date.getTime())
 			);
 
 			transactions.add(transaction);
