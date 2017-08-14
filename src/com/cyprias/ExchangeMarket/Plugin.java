@@ -484,7 +484,7 @@ public class Plugin extends JavaPlugin {
             name.append("]");
         }
 
-		return name.toString();
+		return name.toString().replaceAll(" ", "_");
 
 		/*String id_dur = String.valueOf(itemId);
 		if (itemDur > 0)
