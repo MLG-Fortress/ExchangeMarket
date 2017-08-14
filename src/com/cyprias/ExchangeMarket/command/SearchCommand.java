@@ -77,7 +77,7 @@ public class SearchCommand implements Command {
 	}
 
 	public void getCommands(CommandSender sender, org.bukkit.command.Command cmd) {
-		ChatUtils.sendCommandHelp(sender, Perm.SEARCH, "/%s serach <item> - Search orders.", cmd);
+		ChatUtils.sendCommandHelp(sender, Perm.SEARCH, "/%s search <item> - Search orders.", cmd);
 		//ChatUtils.sendCommandHelp(sender, Perm.SEARCH, "Item "+ChatColor.WHITE+"i:"+ChatColor.GRAY+" - Item name or id", cmd);
 		//ChatUtils.sendCommandHelp(sender, Perm.SEARCH, "Player "+ChatColor.WHITE+"w:"+ChatColor.GRAY+" - Search by writer", cmd);
 		//ChatUtils.sendCommandHelp(sender, Perm.SEARCH, "Keyword "+ChatColor.WHITE+"k:"+ChatColor.GRAY+" - Search by note keyword", cmd);
