@@ -220,7 +220,7 @@ public class BuyOrderCommand implements Command {
 				EconomyResponse r = Econ.withdrawPlayer(sender.getName(), price * amount);
 
 				if (r.transactionSuccess()) {
-					ChatUtils.send(sender, String.format("$\u00a7f%s \u00a77has been withdrawnfrom your account, you now have $\u00a7f%s\u00a77.", Plugin.Round(r.amount, pl), Plugin.Round(r.balance, pl)));
+					ChatUtils.send(sender, String.format("\u00a7f%s \u00a77has been withdrawn from your account, you now have %s\u00a7f%s\u00a77.", Econ.format(r.amount), Econ.format(r.balance)));
 				} else {
 					ChatUtils.send(sender, String.format("An error occured: %s", r.errorMessage));
 				}
