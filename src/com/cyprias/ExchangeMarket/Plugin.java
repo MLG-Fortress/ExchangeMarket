@@ -410,6 +410,9 @@ public class Plugin extends JavaPlugin {
 			}
 		}
 
+		if (id.contains(" "))
+			return getItemStack(id.replaceAll(" ", ""));
+
 		return null;
 	}
 
@@ -522,24 +525,40 @@ public class Plugin extends JavaPlugin {
 	}
 
 	public static boolean isGear(Material mat) {
-		if (mat.toString().contains("SWORD"))
-			return true;
-		if (mat.toString().contains("PICKAXE"))
-			return true;
-		if (mat.toString().contains("SPADE"))
-			return true;
-		if (mat.toString().contains("AXE"))
-			return true;
-		if (mat.toString().contains("HOE"))
-			return true;
-		if (mat.toString().contains("HELMET"))
-			return true;
-		if (mat.toString().contains("CHESTPLATE"))
-			return true;
-		if (mat.toString().contains("LEGGINGS"))
-			return true;
-		if (mat.toString().contains("BOOTS"))
-			return true;
+	    String[] materialName = mat.name().split("_");
+
+	    switch(materialName[materialName.length - 1])
+        {
+            case "SWORD":
+            case "PICKAXE":
+            case "SPADE":
+            case "AXE":
+            case "HOE":
+            case "HELMET":
+            case "CHESTPLATE":
+            case "LEGGINGS":
+            case "BOOTS":
+                return true;
+        }
+
+//		if (mat.toString().contains("SWORD"))
+//			return true;
+//		if (mat.toString().contains("PICKAXE"))
+//			return true;
+//		if (mat.toString().contains("SPADE"))
+//			return true;
+//		if (mat.toString().contains("AXE"))
+//			return true;
+//		if (mat.toString().contains("HOE"))
+//			return true;
+//		if (mat.toString().contains("HELMET"))
+//			return true;
+//		if (mat.toString().contains("CHESTPLATE"))
+//			return true;
+//		if (mat.toString().contains("LEGGINGS"))
+//			return true;
+//		if (mat.toString().contains("BOOTS"))
+//			return true;
 
 		return false;
 	}
