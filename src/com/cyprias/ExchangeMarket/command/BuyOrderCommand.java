@@ -241,12 +241,12 @@ public class BuyOrderCommand implements Command {
 
 				
 				ChatUtils.send(sender, String.format("\u00a77Created buy order #\u00a7f%s \u00a77for \u00a7f%s\u00a77x\u00a7f%s \u00a77@ \u00a7f%s \u00a77(\u00a7f%s\u00a77e)", id, Plugin.getItemName(stock),
-					Econ.format(preOrder.getAmount()), Econ.format(preOrder.getPrice() * preOrder.getAmount()), Econ.format(preOrder.getPrice())));
+					preOrder.getAmount(), Econ.format(preOrder.getPrice() * preOrder.getAmount()), Econ.format(preOrder.getPrice())));
 
 				EconomyResponse r = Econ.withdrawPlayer(sender.getName(), price * amount);
 
 				if (r.transactionSuccess()) {
-					ChatUtils.send(sender, String.format("\u00a7f%s \u00a77has been withdrawn from your account, you now have %s\u00a7f%s\u00a77.", Econ.format(r.amount), Econ.format(r.balance)));
+					ChatUtils.send(sender, String.format("\u00a7f%s \u00a77has been withdrawn from your account, you now have \u00a7f%s\u00a77.", Econ.format(r.amount), Econ.format(r.balance)));
 				} else {
 					ChatUtils.send(sender, String.format("An error occured: %s", r.errorMessage));
 				}
