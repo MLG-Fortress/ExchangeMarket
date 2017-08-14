@@ -439,6 +439,11 @@ public class Plugin extends JavaPlugin {
 			l = l + 1;
 			if (l > 3) {
 				String[] values = line.split(",");
+				if (values.length < 3)
+                {
+                    getLogger().warning("Could not parse " + line + " from items.csv");
+                    continue;
+                }
 				stock = getItemStack(Integer.parseInt(values[1]), Short.parseShort(values[2]));
 				nameToStack.put(values[0], stock);
 
