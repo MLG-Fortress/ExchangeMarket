@@ -410,7 +410,7 @@ public class Plugin extends JavaPlugin {
 			}
 		}
 
-		if (id.contains(" "))
+		if (id.contains("_"))
 			return getItemStack(id.replaceAll("_", ""));
 
 		return null;
