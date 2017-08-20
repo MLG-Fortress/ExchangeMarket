@@ -179,11 +179,11 @@ public class BuyCommand implements Command {
 			}
 			
 			if (moneySpent > 0){
-				ChatUtils.send(sender, String.format("\u00a7a[Estimate] \u00a7f%s\u00a77x\u00a7f%s\u00a77 will cost $\u00a7f%s\u00a77, type \u00a7d/em confirm \u00a77to confirm estimate.", Plugin.getItemName(stock), itemsTraded, Plugin.Round(moneySpent, dplaces)));
+				ChatUtils.send(sender, String.format("\u00a7a[Estimate] \u00a7f%s\u00a77x\u00a7f%s\u00a77 will cost \u00a7f%s\u00a77, type \u00a7d/em confirm \u00a77to confirm estimate.", Plugin.getItemName(stock), itemsTraded, Econ.format(moneySpent)));
 			}else{
 				stock.setAmount(1);
 				if (!InventoryUtil.fits(stock, player.getInventory())){
-					ChatUtils.send(sender, "\u00a77You have no bag space available.");
+					ChatUtils.send(sender, "\u00a77You have no inventory space available.");
 				
 				}else{
 					

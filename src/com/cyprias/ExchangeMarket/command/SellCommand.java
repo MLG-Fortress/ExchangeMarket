@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cyprias.ExchangeMarket.Econ;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -188,8 +189,8 @@ public class SellCommand implements Command {
 
 			if (itemsTraded > 0) {
 
-				ChatUtils.send(sender, String.format("\u00a7a[Estimate] \u00a7f%s\u00a77x\u00a7f%s\u00a77 will earn $\u00a7f%s\u00a77, type \u00a7d/em confirm \u00a77to confirm estimate.",
-					Plugin.getItemName(stock), itemsTraded, Plugin.Round(moneyProfited, Config.getInt("properties.price-decmial-places"))));
+				ChatUtils.send(sender, String.format("\u00a7a[Estimate] \u00a7f%s\u00a77x\u00a7f%s\u00a77 will earn \u00a7f%s\u00a77, type \u00a7d/em confirm \u00a77to confirm estimate.",
+					Plugin.getItemName(stock), itemsTraded, Econ.format(moneyProfited)));
 
 			} else {
 

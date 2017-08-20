@@ -221,8 +221,8 @@ public class SellOrderCommand implements Command {
 					
 					ChatUtils.send(
 						sender,
-						String.format("\u00a77Sold \u00a7f%s\u00a77x\u00a7f%s \u00a77for \u00a7f%s \u00a77(\u00a7f%s \u00a77each).", Plugin.getItemName(stock), Econ.format(traded), Econ.format(profit),
-							Plugin.Round(o.getPrice(), pl)));
+						String.format("\u00a77Sold \u00a7f%s\u00a77x\u00a7f%s \u00a77for \u00a7f%s \u00a77(\u00a7f%s \u00a77total).", Plugin.getItemName(stock), Econ.format(traded),
+							Plugin.Round(o.getPrice(), pl), Econ.format(profit)));
 					
 					
 					
@@ -323,7 +323,7 @@ public class SellOrderCommand implements Command {
 					Logger.warning("(B) We removed the wrong " + Plugin.getItemName(stock) + " amount from " + sender.getName() + "'s inventory. stock: "
 						+ stock.getAmount() + ", inserted: " + (preOrder.getAmount()));
 
-				ChatUtils.send(sender, String.format("\u00a7f%s\u00a77x\u00a7f%s \u00a77has been withdrawnfrom your inventory.", Plugin.getItemName(stock), stock.getAmount()));
+				ChatUtils.send(sender, String.format("\u00a7f%s\u00a77x\u00a7f%s \u00a77has been withdrawn from your inventory.", Plugin.getItemName(stock), stock.getAmount()));
 
 				if (Config.getDouble("taxes.sellOrder") > 0){
 					double taxAmount = Config.getDouble("taxes.sellOrder") * (amount * preOrder.getPrice());
