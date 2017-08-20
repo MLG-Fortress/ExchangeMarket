@@ -68,7 +68,7 @@ public class BuyOrderCommand implements Command {
 		// plugin.sendMessage(sender, "amount: " + amount);
 
 		if (args.length > 2) {
-            
+
 		    if (args[2].substring(args[2].length() - 1, args[2].length()).equalsIgnoreCase("t")) {
 				price = Double.parseDouble(args[2].substring(0, args[2].length() - 1));
                 price = price / amount;
@@ -120,7 +120,7 @@ public class BuyOrderCommand implements Command {
 		// Logger.debug( "accountBalance: " + accountBalance);
 		if (accountBalance <= (price * amount)) {
 
-			ChatUtils.send(sender, "\u00a77Your account ($\u00a7f" + accountBalance + "\u00a77) does not have enough funds to supply this buy order.");
+			ChatUtils.send(sender, "\u00a77Your account (\u00a7f" + Econ.format(accountBalance) + "\u00a77) does not have enough funds to supply this buy order.");
 			return true;
 		}
 
@@ -191,8 +191,8 @@ public class BuyOrderCommand implements Command {
 					
 					ChatUtils.send(
 							sender,
-							String.format("\u00a77Bought \u00a7f%s\u00a77x\u00a7f%s \u00a77for $\u00a7f%s \u00a77($\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Plugin.Round(spend, pl),
-								Plugin.Round(o.getPrice(), pl)));
+							String.format("\u00a77Bought \u00a7f%s\u00a77x\u00a7f%s \u00a77for \u00a7f%s \u00a77(\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Econ.format(spend),
+                                    Econ.format(o.getPrice())));
 					
 					amount -= traded;
 				}

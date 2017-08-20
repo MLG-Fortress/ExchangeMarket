@@ -206,7 +206,7 @@ public class SellOrderCommand implements Command {
 					
 					ChatUtils.send(
 						sender,
-						String.format("\u00a77Sold \u00a7f%s\u00a77x\u00a7f%s \u00a77for $\u00a7f%s \u00a77($\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Plugin.Round(profit, pl),
+						String.format("\u00a77Sold \u00a7f%s\u00a77x\u00a7f%s \u00a77for \u00a7f%s \u00a77(\u00a7f%s \u00a77each).", Plugin.getItemName(stock), Econ.format(traded), Econ.format(profit),
 							Plugin.Round(o.getPrice(), pl)));
 					
 					
@@ -239,7 +239,7 @@ public class SellOrderCommand implements Command {
 			//Logger.debug("taxAmount: " + taxAmount);
 			
 			if (Econ.getBalance(sender.getName()) < taxAmount){
-				ChatUtils.send(sender, String.format("\u00a77You do not have $\u00a7f%s \u00a77needed to place that sell order.", Plugin.Round(taxAmount, Config.getInt("properties.price-decmial-places"))));
+				ChatUtils.send(sender, String.format("\u00a77You do not have \u00a7f%s \u00a77needed to place that sell order.", Econ.format(taxAmount)));
 				return true;
 			}
 		}
@@ -271,13 +271,13 @@ public class SellOrderCommand implements Command {
 				// +" amount from " + sender.getName() + "'s inventory. stock: "
 				// + stock.getAmount() + ", inserted: " + amount);
 
-				ChatUtils.send(sender, String.format("\u00a7f%s\u00a77x\u00a7f%s \u00a77has been withdrawnfrom your inventory.", Plugin.getItemName(stock), amount));
+				ChatUtils.send(sender, String.format("\u00a7f%s\u00a77x\u00a7f%s \u00a77has been withdrawn from your inventory.", Plugin.getItemName(stock), amount));
 
 				if (Config.getDouble("taxes.sellOrder") > 0){
 					double taxAmount = Config.getDouble("taxes.sellOrder") * (amount * preOrder.getPrice());
 					EconomyResponse r = Econ.withdrawPlayer(sender.getName(), taxAmount);
 					if (r.transactionSuccess()) {
-						ChatUtils.send(sender, String.format("$\u00a7f%s \u00a77(\u00a7f%s\u00a77%%) tax has been withdrawn from your account.", Plugin.Round(r.amount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellOrder") * 100)));
+						ChatUtils.send(sender, String.format("\u00a7f%s \u00a77(\u00a7f%s\u00a77%%) tax has been withdrawn from your account.", Econ.format(r.amount), Econ.format(Config.getDouble("taxes.sellOrder") * 100)));
 					} else {
 						ChatUtils.send(sender, String.format("An error occured: %s", r.errorMessage));
 					}
@@ -299,8 +299,8 @@ public class SellOrderCommand implements Command {
 
 				// ChatUtils.send(sender, "Created sell order " + id);
 
-				ChatUtils.send(sender, String.format("\u00a77Created sell order #\u00a7f%s \u00a77for \u00a7f%s\u00a77x\u00a7f%s \u00a77@ \u00a7f%s \u00a77(\u00a7f%s\u00a77e)", id, Plugin.getItemName(stock),
-					preOrder.getAmount(), Plugin.Round(preOrder.getPrice() * preOrder.getAmount(), pl), Plugin.Round(preOrder.getPrice(), pl)));
+				ChatUtils.send(sender, String.format("\u00a77Created sell order #\u00a7f%s \u00a77for \u00a7f%s\u00a77x\u00a7f%s \u00a77@ \u00a7f%s \u00a77(\u00a7f%s \u00a77each)", id, Plugin.getItemName(stock),
+					preOrder.getAmount(), Econ.format(preOrder.getPrice() * preOrder.getAmount()), Econ.format(preOrder.getPrice())));
 
 				InventoryUtil.remove(stock, player.getInventory());
 
@@ -314,7 +314,7 @@ public class SellOrderCommand implements Command {
 					double taxAmount = Config.getDouble("taxes.sellOrder") * (amount * preOrder.getPrice());
 					EconomyResponse r = Econ.withdrawPlayer(sender.getName(), taxAmount);
 					if (r.transactionSuccess()) {
-						ChatUtils.send(sender, String.format("$\u00a7f%s \u00a77(\u00a7f%s\u00a77%%) tax has been withdrawn from your account.", Plugin.Round(r.amount, Config.getInt("properties.price-decmial-places")), Plugin.Round(Config.getDouble("taxes.sellOrder")*100)));
+						ChatUtils.send(sender, String.format("\u00a7f%s \u00a77(\u00a7f%s\u00a77%%) tax has been withdrawn from your account.", Econ.format(r.amount), Econ.format(Config.getDouble("taxes.sellOrder")*100)));
 					} else {
 						ChatUtils.send(sender, String.format("An error occured: %s", r.errorMessage));
 					}

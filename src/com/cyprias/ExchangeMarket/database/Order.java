@@ -178,15 +178,15 @@ public class Order {
 
 				ChatUtils.notify(
 					p,
-					String.format("\u00a77You sold \u00a7f%s\u00a77x\u00a7f%s \u00a77for $\u00a7f%s.", getPlainName(), amount,
-						Plugin.Round(tPrice, Config.getInt("properties.price-decmial-places"))));
+					String.format("\u00a77You sold \u00a7f%s\u00a77x\u00a7f%s \u00a77for \u00a7f%s.", getPlainName(), amount,
+						Econ.format(tPrice)));
 
 
 			} else if (this.type == Order.BUY_ORDER) {
 				ChatUtils.notify(
 					p,
-					String.format("\u00a77You bought \u00a7f%s\u00a77x\u00a7f%s \u00a77for $\u00a7f%s.", getPlainName(), amount,
-						Plugin.Round(tPrice, Config.getInt("properties.price-decmial-places"))));
+					String.format("\u00a77You bought \u00a7f%s\u00a77x\u00a7f%s \u00a77for \u00a7f%s.", getPlainName(), amount,
+						Econ.format(tPrice)));
 
 			}
 		}
