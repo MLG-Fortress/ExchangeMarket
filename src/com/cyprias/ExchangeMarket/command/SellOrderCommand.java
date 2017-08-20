@@ -74,8 +74,9 @@ public class SellOrderCommand implements Command {
 
 		if (args.length > 2) {
 
-			if (args[2].substring(args[2].length() - 1, args[2].length()).equalsIgnoreCase("e")) {
+			if (args[2].substring(args[2].length() - 1, args[2].length()).equalsIgnoreCase("t")) {
 				price = Double.parseDouble(args[2].substring(0, args[2].length() - 1));
+                price = price / amount;
 			} else {
 
 				if (Plugin.isDouble(args[2])) {
@@ -86,7 +87,6 @@ public class SellOrderCommand implements Command {
 					ChatUtils.error(sender, "Invalid price: " + args[2]);
 					return true;
 				}
-				price = price / amount;
 
 			}
 			if (price <= 0) {
