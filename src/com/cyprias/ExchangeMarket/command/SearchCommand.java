@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.cyprias.ExchangeMarket.ChatUtils;
@@ -28,16 +30,28 @@ public class SearchCommand implements Command {
 		if (!Plugin.checkPermission(sender, Perm.SEARCH))
 			return false;
 
-		if (args.length <= 0 || args.length >= 3){
+		if (args.length >= 3){
 			getCommands(sender, cmd);
 			return true;
 		}
-		
-		
-		ItemStack stock = Plugin.getItemStack(args[0]);
+
+		ItemStack stock;
+		if (args.length == 0 || args[0].equalsIgnoreCase("hand"))
+		{
+			stock = ((Player)sender).getInventory().getItemInMainHand();
+		}
+		else
+			stock = Plugin.getItemStack(args[0]);
+
 		if (stock == null || stock.getTypeId() == 0) {
 			ChatUtils.error(sender, "Unknown item: " + args[0]);
 			return true;
+		}
+
+		//RoboMWM - warn regarding selling of enchanted/custom items
+		if (!stock.getEnchantments().isEmpty() || stock.getItemMeta().hasDisplayName())
+		{
+			ChatUtils.error(sender, ChatColor.GRAY + "Note: ExchangeMarket cannot accept damaged, enchanted, or custom items. Use the shops to trade those.");
 		}
 
 		

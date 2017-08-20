@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
@@ -39,7 +40,7 @@ public class ItemInfoCommand implements Command {
 		}
 		
 		ItemStack stock;
-		if (args.length > 0){
+		if (args.length > 0 && !args[0].equalsIgnoreCase("hand")){
 			stock = Plugin.getItemStack(args[0]);
 			if (stock == null || stock.getTypeId() == 0) {
 				ChatUtils.error(sender, "Unknown item: " + args[0]);
@@ -47,11 +48,17 @@ public class ItemInfoCommand implements Command {
 			}
 		}else{
 		//	Player player = (Player) sender;
-			stock = ((Player) sender).getItemInHand();
+			stock = ((Player) sender).getInventory().getItemInMainHand();
 			if (stock == null || stock.getTypeId() == 0) {
 				ChatUtils.error(sender, "There's no item in your hand.");
 				return true;
 			}
+		}
+
+		//RoboMWM - warn regarding selling of enchanted/custom items
+		if (!stock.getEnchantments().isEmpty() || stock.getItemMeta().hasDisplayName())
+		{
+			ChatUtils.error(sender, ChatColor.GRAY + "Note: ExchangeMarket cannot accept damaged, enchanted, or custom items. Use the shops to trade those.");
 		}
 			
 		//
