@@ -42,16 +42,31 @@ public class SellOrderCommand implements Command {
 			return true;
 		}
 
-		ItemStack stock = Plugin.getItemStack(args[0]);
+		ItemStack stock;
+		if (args[0].equalsIgnoreCase("hand"))
+        {
+            stock = player.getInventory().getItemInMainHand();
+        }
+        else
+            stock = Plugin.getItemStack(args[0]);
+
 		if (stock == null || stock.getTypeId() == 0) {
 			ChatUtils.error(sender, "Unknown item: " + args[0]);
 			return true;
 		}
 
+        //RoboMWM - deny selling of enchanted/custom items
+        if (!stock.getEnchantments().isEmpty() || stock.getItemMeta().hasDisplayName())
+        {
+            ChatUtils.error(sender,"ExchangeMarket cannot accept damaged, enchanted, or custom items. Use the shops to trade those.");
+            return true;
+        }
+
 		int intAmount = InventoryUtil.getAmount(stock, player.getInventory());
 
 		if (intAmount == 0) {
-			ChatUtils.error(sender, "You do not have any " + Plugin.getItemName(stock));
+			ChatUtils.error(sender, "You do not have any " + Plugin.getItemName(stock) + "\n" +
+                    "Note: ExchangeMarket cannot accept damaged, enchanted, or custom items. Use the shops to trade those.");
 			return true;
 		}
 

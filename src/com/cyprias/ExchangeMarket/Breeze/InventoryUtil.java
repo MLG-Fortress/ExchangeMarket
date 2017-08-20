@@ -38,6 +38,10 @@ public class InventoryUtil {
                 continue;
             }
 
+            //RoboMWM - ignore items with custom names, enchants
+            if (!iStack.getEnchantments().isEmpty() || iStack.getItemMeta().hasDisplayName())
+                continue;
+
             itemAmount += iStack.getAmount();
         }
 

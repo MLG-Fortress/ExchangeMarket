@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.cyprias.ExchangeMarket.Econ;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
@@ -112,18 +113,18 @@ public class PriceCommand implements Command {
 				int dplaces = Config.getInt("properties.price-decmial-places");
 				
 				if (orders.size() > 1)
-					ChatUtils.send(sender, String.format("\u00a77Lowest price: $\u00a7f%s \u00a77(x\u00a7f%s\u00a77), Highest price: $\u00a7f%s \u00a77(x\u00a7f%s\u00a77)",  Plugin.Round(lowest*amount,dplaces), lowestAmount, Plugin.Round(highest*amount,dplaces), highestAmount));
+					ChatUtils.send(sender, String.format("\u00a77Lowest price: $\u00a7f%s \u00a77(x\u00a7f%s\u00a77), Highest price: $\u00a7f%s \u00a77(x\u00a7f%s\u00a77)",  Econ.format(lowest*amount), lowestAmount, Econ.format(highest*amount), highestAmount));
 				
 				
 				double average = totalPrice / totalAmount;
 				
 				
 				
-				String mean = Plugin.Round(mean(dPrices)*amount,dplaces);
-				String median = Plugin.Round(median(dPrices)*amount,dplaces);
-				String mode = Plugin.Round(mode(dPrices)*amount,dplaces);
+				String mean = Econ.format(mean(dPrices)*amount);
+				String median = Econ.format(median(dPrices)*amount);
+				String mode = Econ.format(mode(dPrices)*amount);
 				
-				ChatUtils.send(sender, String.format("\u00a77Average: $\u00a7f%s\u00a77, mean:$\u00a7f%s\u00a77, med:$\u00a7f%s\u00a77, mod:$\u00a7f%s\u00a77.", Plugin.Round(average*amount,dplaces), mean, median, mode));
+				ChatUtils.send(sender, String.format("\u00a77Average: $\u00a7f%s\u00a77, mean:$\u00a7f%s\u00a77, med:$\u00a7f%s\u00a77, mod:$\u00a7f%s\u00a77.", Econ.format(average*amount), mean, median, mode));
 				
 				
 			}else{

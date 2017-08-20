@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -61,16 +62,30 @@ public class SellCommand implements Command {
 			return true;
 		}
 
-		ItemStack stock = Plugin.getItemStack(args[0]);
+		ItemStack stock;
+		if (args[0].equalsIgnoreCase("hand"))
+		{
+			stock = player.getInventory().getItemInMainHand();
+		}
+		else
+			stock = Plugin.getItemStack(args[0]);
+
 		if (stock == null || stock.getType() == Material.AIR) {
 			ChatUtils.error(sender, "Unknown item: " + args[0]);
+			return true;
+		}
+
+		//RoboMWM - deny selling of enchanted/custom items
+		if (!stock.getEnchantments().isEmpty() || stock.getItemMeta().hasDisplayName())
+		{
+			ChatUtils.error(sender,"ExchangeMarket cannot accept damaged, enchanted, or custom items. Use the shops to trade those.");
 			return true;
 		}
 
 		int intAmount = InventoryUtil.getAmount(stock, player.getInventory());
 
 		if (intAmount == 0) {
-			ChatUtils.error(sender, "\u00a77You do not have any " + Plugin.getItemName(stock));
+			ChatUtils.error(sender, "You do not have any " + Plugin.getItemName(stock));
 			return true;
 		}
 		

@@ -282,8 +282,8 @@ public class Order {
 		message = message.replace("<player>", getPlayer());
 		message = message.replace("<amount>", String.valueOf(getAmount()));
 		int dplaces = Config.getInt("properties.price-decmial-places");
-		message = message.replace("<price>", Plugin.Round(getPrice() * getAmount(), dplaces));
-		message = message.replace("<priceeach>", Plugin.Round(getPrice(), dplaces));
+		message = message.replace("<price>", Econ.format(getPrice() * getAmount()));
+		message = message.replace("<priceeach>", Econ.format(getPrice()));
 		return message;
 	}
 
