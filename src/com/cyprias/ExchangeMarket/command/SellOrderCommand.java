@@ -72,13 +72,15 @@ public class SellOrderCommand implements Command {
 
 		int amount = 0;// InventoryUtil.getAmount(item, player.getInventory());
 		if (args.length > 1) {
-			if (Plugin.isInt(args[1]) && Integer.parseInt(args[1]) >= amount) {
+		    if (args[1].equalsIgnoreCase("all"))
+                amount = Integer.MAX_VALUE;
+			else if (Plugin.isInt(args[1]) && Integer.parseInt(args[1]) >= amount) {
 				amount = Integer.parseInt(args[1]);
 			} else {
 				// ExchangeMarket.sendMessage(sender, F("invalidAmount",
 				// args[2]));
-				ChatUtils.error(sender, "Invalid amount: " + args[1]);
-				return true;
+                ChatUtils.error(sender, "Invalid amount: " + args[1]);
+                return true;
 			}
 		}
 
