@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -38,8 +39,8 @@ public class InventoryUtil {
                 continue;
             }
 
-            //RoboMWM - ignore items with custom names, enchants
-            if (!iStack.getEnchantments().isEmpty() || iStack.getItemMeta().hasDisplayName())
+            //RoboMWM - ignore items with custom names, enchants, and written books
+            if (!iStack.getEnchantments().isEmpty() || iStack.getItemMeta().hasDisplayName() || iStack.getType() == Material.WRITTEN_BOOK)
                 continue;
 
             itemAmount += iStack.getAmount();
