@@ -316,8 +316,8 @@ public class SellOrderCommand implements Command {
 
 				// ChatUtils.send(sender, "Created sell order " + id);
 
-				ChatUtils.send(sender, String.format("\u00a77Created sell order #\u00a7f%s \u00a77for \u00a7f%s\u00a77x\u00a7f%s \u00a77@ \u00a7f%s \u00a77(\u00a7f%s \u00a77each)", id, Plugin.getItemName(stock),
-					preOrder.getAmount(), Econ.format(preOrder.getPrice() * preOrder.getAmount()), Econ.format(preOrder.getPrice())));
+				ChatUtils.send(sender, String.format("\u00a77Created sell order #\u00a7f%s \u00a77for \u00a7f%s\u00a77x\u00a7f%s \u00a77@ \u00a7f%s \u00a77(\u00a7f%s \u00a77total)", id, Plugin.getItemName(stock),
+					preOrder.getAmount(), Econ.format(preOrder.getPrice()), Econ.format(preOrder.getPrice() * preOrder.getAmount())));
 
 				InventoryUtil.remove(stock, player.getInventory());
 
