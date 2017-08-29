@@ -39,6 +39,12 @@ public class SearchCommand implements Command {
 		if (args.length == 0 || args[0].equalsIgnoreCase("hand"))
 		{
 			stock = ((Player)sender).getInventory().getItemInMainHand();
+			if (stock == null)
+            {
+                ChatUtils.error(sender, "There's no item in your hand");
+                getCommands(sender, cmd);
+                return true;
+            }
 		}
 		else
 			stock = Plugin.getItemStack(args[0]);
@@ -91,7 +97,7 @@ public class SearchCommand implements Command {
 	}
 
 	public void getCommands(CommandSender sender, org.bukkit.command.Command cmd) {
-		ChatUtils.sendCommandHelp(sender, Perm.SEARCH, "/%s search <item> - Search orders.", cmd);
+		ChatUtils.sendCommandHelp(sender, Perm.SEARCH, "/%s search [item/hand] - Search orders.", cmd);
 		//ChatUtils.sendCommandHelp(sender, Perm.SEARCH, "Item "+ChatColor.WHITE+"i:"+ChatColor.GRAY+" - Item name or id", cmd);
 		//ChatUtils.sendCommandHelp(sender, Perm.SEARCH, "Player "+ChatColor.WHITE+"w:"+ChatColor.GRAY+" - Search by writer", cmd);
 		//ChatUtils.sendCommandHelp(sender, Perm.SEARCH, "Keyword "+ChatColor.WHITE+"k:"+ChatColor.GRAY+" - Search by note keyword", cmd);

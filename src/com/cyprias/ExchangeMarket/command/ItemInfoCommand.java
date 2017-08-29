@@ -27,7 +27,7 @@ public class ItemInfoCommand implements Command {
 	}
 
 	public void getCommands(CommandSender sender, org.bukkit.command.Command cmd) {
-		ChatUtils.sendCommandHelp(sender, Perm.ITEM_INFO, "/%s iteminfo [item]", cmd);
+		ChatUtils.sendCommandHelp(sender, Perm.ITEM_INFO, "/%s iteminfo [item/hand]", cmd);
 	}
 
 	public boolean execute(final CommandSender sender, org.bukkit.command.Command cmd, String[] args) throws SQLException, IOException, InvalidConfigurationException {
