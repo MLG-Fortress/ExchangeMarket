@@ -113,7 +113,7 @@ public class PriceCommand implements Command {
 				int dplaces = Config.getInt("properties.price-decmial-places");
 				
 				if (orders.size() > 1)
-					ChatUtils.send(sender, String.format("\u00a77Lowest price: $\u00a7f%s \u00a77(x\u00a7f%s\u00a77), Highest price: $\u00a7f%s \u00a77(x\u00a7f%s\u00a77)",  Econ.format(lowest*amount), lowestAmount, Econ.format(highest*amount), highestAmount));
+					ChatUtils.send(sender, String.format("\u00a77Lowest price: \u00a7f%s \u00a77(x\u00a7f%s\u00a77), Highest price: \u00a7f%s \u00a77(x\u00a7f%s\u00a77)",  Econ.format(lowest*amount), lowestAmount, Econ.format(highest*amount), highestAmount));
 				
 				
 				double average = totalPrice / totalAmount;
@@ -124,7 +124,7 @@ public class PriceCommand implements Command {
 				String median = Econ.format(median(dPrices)*amount);
 				String mode = Econ.format(mode(dPrices)*amount);
 				
-				ChatUtils.send(sender, String.format("\u00a77Average: $\u00a7f%s\u00a77, mean:$\u00a7f%s\u00a77, med:$\u00a7f%s\u00a77, mod:$\u00a7f%s\u00a77.", Econ.format(average*amount), mean, median, mode));
+				ChatUtils.send(sender, String.format("\u00a77Average: \u00a7f%s\u00a77, mean:\u00a7f%s\u00a77, med:\u00a7f%s\u00a77, mod:\u00a7f%s\u00a77.", Econ.format(average*amount), mean, median, mode));
 				
 				
 			}else{
