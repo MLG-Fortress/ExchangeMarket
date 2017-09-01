@@ -479,7 +479,26 @@ public class Plugin extends JavaPlugin {
 	public static String getItemName(int itemId, short itemDur, String itemEnchant) {
 		StringBuilder name = new StringBuilder();
 		ItemStack itemStack = new ItemStack(itemId, 1, itemDur);
-		name.append(itemStack.getI18NDisplayName());
+		switch(itemStack.getType())
+        {
+            case GOLD_RECORD:
+            case GREEN_RECORD:
+            case RECORD_3:
+            case RECORD_4:
+            case RECORD_5:
+            case RECORD_6:
+            case RECORD_7:
+            case RECORD_8:
+            case RECORD_9:
+            case RECORD_10:
+            case RECORD_11:
+            case RECORD_12:
+                name.append(itemStack.getType().toString().toLowerCase());
+                break;
+            default:
+                name.append(itemStack.getI18NDisplayName());
+                break;
+        }
 
 //        if (itemDur != 0 && itemStack.getMaxStackSize() > 1) //If the item isn't stackable, we'll just assume it's armor/tools (only other item I'm aware of are potions)
 //        {
