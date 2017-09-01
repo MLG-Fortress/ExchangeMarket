@@ -168,8 +168,8 @@ public class ConfirmCommand implements Command {
 				if (Config.getBoolean("properties.show-orderer-each-transaction"))
 					ChatUtils.send(
 						sender,
-						String.format("\u00a77Bought \u00a7f%s\u00a77x\u00a7f%s \u00a77for $\u00a7f%s \u00a77($\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Plugin.Round(spend, places),
-							Plugin.Round(order.getPrice(), places)));
+						String.format("\u00a77Bought \u00a7f%s\u00a77x\u00a7f%s \u00a77for \u00a7f%s \u00a77(\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Econ.format(spend),
+							Econ.format(order.getPrice())));
 
 			}
 
@@ -177,7 +177,7 @@ public class ConfirmCommand implements Command {
 
 			if (moneyTraded > 0) {
 				ChatUtils.send(sender,
-					String.format("\u00a77Spent $\u00a7f%s \u00a77buying \u00a7f%s\u00a77x\u00a7f%s\u00a77.", Plugin.Round(moneyTraded, places), Plugin.getItemName(stock), totalTraded));
+					String.format("\u00a77Spent \u00a7f%s \u00a77buying \u00a7f%s\u00a77x\u00a7f%s\u00a77.", Econ.format(moneyTraded), Plugin.getItemName(stock), totalTraded));
 
 			} else {
 				if (stock != null){
@@ -247,8 +247,8 @@ public class ConfirmCommand implements Command {
 				if (Config.getBoolean("properties.show-orderer-each-transaction"))
 					ChatUtils.send(
 						sender,
-						String.format("\u00a77Sold \u00a7f%s\u00a77x\u00a7f%s \u00a77for $\u00a7f%s \u00a77($\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Plugin.Round(profit, places),
-							Plugin.Round(order.getPrice(), places)));
+						String.format("\u00a77Sold \u00a7f%s\u00a77x\u00a7f%s \u00a77for \u00a7f%s \u00a77(\u00a7f%s\u00a77e).", Plugin.getItemName(stock), traded, Econ.format(profit),
+							Econ.format(order.getPrice())));
 
 				// po.order
 
@@ -256,7 +256,7 @@ public class ConfirmCommand implements Command {
 			if (moneyTraded > 0) {
 				Plugin.database.cleanEmpties();
 				ChatUtils.send(sender,
-					String.format("\u00a77Made $\u00a7f%s \u00a77selling \u00a7f%s\u00a77x\u00a7f%s\u00a77.", Plugin.Round(moneyTraded, places), Plugin.getItemName(stock), totalTraded));
+					String.format("\u00a77Made \u00a7f%s \u00a77selling \u00a7f%s\u00a77x\u00a7f%s\u00a77.", Econ.format(moneyTraded), Plugin.getItemName(stock), totalTraded));
 
 			} else if (stock != null && InventoryUtil.getAmount(stock, pT.player.getInventory()) == 0) {
 				ChatUtils.send(sender, "\u00a77You have no \u00a7f" + Plugin.getItemName(stock) + " \u00a77to sell.");
