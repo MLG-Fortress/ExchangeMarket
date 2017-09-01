@@ -40,7 +40,7 @@ public class InventoryUtil {
             }
 
             //RoboMWM - ignore items with custom names, enchants, and written books
-            if (!iStack.getEnchantments().isEmpty() || iStack.getItemMeta().hasDisplayName() || iStack.getType() == Material.WRITTEN_BOOK)
+            if (!iStack.getEnchantments().isEmpty() || iStack.getItemMeta().hasDisplayName() || iStack.getType() == Material.WRITTEN_BOOK || iStack.getType() == Material.MONSTER_EGG)
                 continue;
 
             itemAmount += iStack.getAmount();
