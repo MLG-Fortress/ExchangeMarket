@@ -481,13 +481,13 @@ public class Plugin extends JavaPlugin {
 		ItemStack itemStack = new ItemStack(itemId, 1, itemDur);
 		name.append(itemStack.getI18NDisplayName());
 
-        if (itemDur != 0 && itemStack.getMaxStackSize() > 1) //If the item isn't stackable, we'll just assume it's armor/tools (only other item I'm aware of are potions)
-        {
-            name.append(" [");
-            name.append(itemId);
-            name.append(":" + itemDur);
-            name.append("]");
-        }
+//        if (itemDur != 0 && itemStack.getMaxStackSize() > 1) //If the item isn't stackable, we'll just assume it's armor/tools (only other item I'm aware of are potions)
+//        {
+//            name.append(" [");
+//            name.append(itemId);
+//            name.append(":" + itemDur);
+//            name.append("]");
+//        }
 
 		return name.toString().replaceAll(" ", "_");
 
